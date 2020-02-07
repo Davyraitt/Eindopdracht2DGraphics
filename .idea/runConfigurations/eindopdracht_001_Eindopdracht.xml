@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="eindopdracht-001.Eindopdracht" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="Game.Game" />
+    <module name="eindopdracht-001.Eindopdracht" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
