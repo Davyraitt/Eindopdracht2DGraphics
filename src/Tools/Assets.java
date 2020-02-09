@@ -13,12 +13,19 @@ public class Assets {
     public static BufferedImage grasstile2;
     public static BufferedImage grasstile3;
     public static BufferedImage woodtile;
+    public static SpriteSheet sheet;
 
     private static final int width = 32;
     private static final int height = 32;
 
 
-    public static void init () {
-    SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/groundtiles.jpg"));
+    public static void init() {
+        sheet = new SpriteSheet(ImageLoader.loadImage("/textures/groundtiles.png"));
+
+        lavatile = sheet.crop(0, 0, width, height);
+        grasstile = sheet.crop(width, 0, width, height);
+        grasstile2 = sheet.crop(width * 2, 0, width, height);
+        grasstile3 = sheet.crop(width * 3, 0, width, height);
+        woodtile = sheet.crop(0, height, width, height);
     }
 }
