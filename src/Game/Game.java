@@ -1,13 +1,13 @@
 package Game;
 
+import States.GameState;
+import States.State;
 import Tools.Assets;
 import Tools.SpriteSheet;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import org.jfree.fx.FXGraphics2D;
 import org.jfree.fx.ResizableCanvas;
@@ -17,18 +17,17 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 
 public class Game extends Application {
     //project data
     private int width = 1920;
     private int height = 1080;
     private ResizableCanvas canvas;
-    private Thread thread;
-    private boolean gameloop = false; // gameloop main
+
+    //title of game
     private String gameTitle = "Niciarex"; // name of the game
+
+    //fps and fps counter
     private int x = 0; // x coordinate
     private int fps = 60; // frames per second , amount of times we want to call update and draw PER SECOND
     private int timePerUpdate = 1_000_000_000 / fps; // 1 second divided by our fps, now we get our frames per second
@@ -42,8 +41,11 @@ public class Game extends Application {
     private BufferedImage testImage; // Testimage initialiseren
     private SpriteSheet sheet;
 
+    //multiple states of the game
+    private State gameState;
+
     public static void main(String[] args) {
-        launch(Game.class);
+        launch(Game.class); //launches the main game
     }
 
     @Override
@@ -98,9 +100,11 @@ public class Game extends Application {
         //spritesheet = ImageLoader.loadImage("sprite.png");
 
         Assets.init();  // Initialiseren van de assets.
+        gameState = new GameState();
+        State.setState(gameState);
     }
 
-    public void draw(FXGraphics2D graphics) {
+    public void draw(FXGraphics2D graphics) { // AKA render
         //graphics.drawImage( sheet.crop(32,0, 35, 51), 5,5, null); // using the crop method
 
         graphics.setBackground(Color.white);
@@ -111,7 +115,9 @@ public class Game extends Application {
 
 
         // Hier begin ik met tekenen
-        graphics.drawImage(Assets.lavatile, x, 10, null);
+        if (State.getState() != null) {
+            State.getState().draw(graphics);
+        }
 
 
         // Hier stop ik het tekenen
@@ -120,7 +126,11 @@ public class Game extends Application {
     }
 
     public void update(double deltaTime) {  // tick aka update
-        x = x + 1;
+        if (State.getState() != null) {
+            long now = System.nanoTime();
+            long last = -1;
+            State.getState().update(now - last / 1000000000.0);
+        }
 
     }
 }
