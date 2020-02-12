@@ -13,7 +13,7 @@ public class Player extends Creature {
 	
 	
 	public void update ( ) {
-		moveDown();
+		moveRight();
 
 	}
 	

@@ -52,6 +52,7 @@ public class Game extends Application {
     private State settingState;
     private State gameState;
 
+    //player attribute
 
     public static void main(String[] args) {
         launch(Game.class); //launches the main game
@@ -129,8 +130,11 @@ public class Game extends Application {
     }
 
     private void keyPressed(KeyEvent e) {
+
+        System.out.println("pressed");
         switch (e.getCode()) {
             case W:
+                System.out.println("w pressed"); break;
 
             case A:
 
@@ -194,6 +198,7 @@ public class Game extends Application {
     }
 
     public void update(double deltaTime) {  // update aka update
+
         if (State.getState() != null) {
             long now = System.nanoTime();
             long last = -1;
