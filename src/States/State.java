@@ -1,9 +1,16 @@
 package States;
 
+import Game.Game;
 import org.jfree.fx.FXGraphics2D;
 
 public abstract class State {
-
+    
+    protected Game game;
+    
+    public State ( Game game ) {
+        this.game = game;
+    }
+    
     private static State currentState = null;
 
     public static State getState() {

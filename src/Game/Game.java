@@ -1,6 +1,8 @@
 package Game;
 
 import States.GameState;
+import States.MenuState;
+import States.SettingsState;
 import States.State;
 import Tools.Assets;
 import Tools.SpriteSheet;
@@ -41,7 +43,9 @@ public class Game extends Application {
     private BufferedImage testImage; // Testimage initialiseren
     private SpriteSheet sheet;
 
-    //multiple states of the game
+    //multiple states of the game, we declare them all here
+    private State menuState;
+    private State settingState;
     private State gameState;
 
     public static void main(String[] args) {
@@ -60,7 +64,7 @@ public class Game extends Application {
         mainPane.setCenter(canvas);
         FXGraphics2D g2d = new FXGraphics2D(canvas.getGraphicsContext2D());
         init();
-        new AnimationTimer() { // main game loop, constantly runs update(tick) and draw (render) to show things on the screen
+        new AnimationTimer() { // main game loop, constantly runs update(update) and draw (render) to show things on the screen
             long last = -1;
 
             @Override
@@ -100,7 +104,9 @@ public class Game extends Application {
         //spritesheet = ImageLoader.loadImage("sprite.png");
 
         Assets.init();  // Initialiseren van de assets.
-        gameState = new GameState();
+        gameState = new GameState(this);
+        menuState = new MenuState (this);
+        settingState = new SettingsState (this);
         State.setState(gameState);
     }
 
@@ -125,12 +131,16 @@ public class Game extends Application {
 
     }
 
-    public void update(double deltaTime) {  // tick aka update
+    public void update(double deltaTime) {  // update aka update
         if (State.getState() != null) {
             long now = System.nanoTime();
             long last = -1;
             State.getState().update(now - last / 1000000000.0);
         }
 
+    }
+    
+    public ResizableCanvas getCanvas ( ) {
+        return canvas;
     }
 }

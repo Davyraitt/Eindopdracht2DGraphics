@@ -13,6 +13,7 @@ public class Assets {
     public static BufferedImage grasstile2;
     public static BufferedImage grasstile3;
     public static BufferedImage woodtile;
+    public static BufferedImage playertile;
     public static SpriteSheet sheet;
 
     private static final int width = 32;
@@ -27,5 +28,6 @@ public class Assets {
         grasstile2 = sheet.crop(width * 2, 0, width, height);
         grasstile3 = sheet.crop(width * 3, 0, width, height);
         woodtile = sheet.crop(0, height, width, height);
+        playertile = sheet.crop ( width, height, width, height);
     }
 }
