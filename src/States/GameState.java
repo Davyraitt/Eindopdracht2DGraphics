@@ -19,9 +19,33 @@ public class GameState extends State {
         player.draw ( graphics );
 
     }
+    
 
     @Override
     public void update(double deltaTime) {
         player.update ();
+        
+        
     }
+    
+    @Override
+    public void moveUp ( ) {
+        player.moveUp ();
+    }
+    
+    @Override
+    public void moveDown ( ) {
+        player.moveDown ();
+    }
+    
+    @Override
+    public void moveRight ( ) {
+        player.moveRight ();
+    }
+    
+    @Override
+    public void moveLeft ( ) {
+        player.moveLeft ();
+    }
+    
 }

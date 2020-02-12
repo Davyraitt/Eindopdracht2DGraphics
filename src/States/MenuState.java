@@ -17,4 +17,24 @@ public class MenuState extends State {
     public void update(double deltaTime) {
 
     }
+    
+    @Override
+    public void moveUp ( ) {
+    
+    }
+    
+    @Override
+    public void moveDown ( ) {
+    
+    }
+    
+    @Override
+    public void moveRight ( ) {
+    
+    }
+    
+    @Override
+    public void moveLeft ( ) {
+    
+    }
 }
