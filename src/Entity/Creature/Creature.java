@@ -17,9 +17,29 @@ public class Creature extends Entity {
 	public void update ( ) {
 	
 	}
-	
-	
+
+
 	public void draw ( Graphics g ) {
 	
+	}
+
+	@Override
+	public void moveUp() {
+
+	}
+
+	@Override
+	public void moveDown() {
+
+	}
+
+	@Override
+	public void moveLeft() {
+
+	}
+
+	@Override
+	public void moveRight() {
+
 	}
 }

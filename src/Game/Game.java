@@ -1,5 +1,6 @@
 package Game;
 
+import Entity.Player;
 import States.GameState;
 import States.MenuState;
 import States.SettingsState;
@@ -9,6 +10,8 @@ import Tools.SpriteSheet;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import org.jfree.fx.FXGraphics2D;
@@ -19,6 +22,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Game extends Application {
     //project data
@@ -48,6 +52,7 @@ public class Game extends Application {
     private State settingState;
     private State gameState;
 
+
     public static void main(String[] args) {
         launch(Game.class); //launches the main game
     }
@@ -61,6 +66,10 @@ public class Game extends Application {
         clip.start();
         BorderPane mainPane = new BorderPane();
         canvas = new ResizableCanvas(g -> draw(g), mainPane);
+        canvas.setOnScroll(e -> mouseScrolled(e));
+        canvas.setOnKeyPressed(e -> keyPressed(e));
+        canvas.setOnKeyReleased(e -> keyReleased(e));
+        canvas.setFocusTraversable(false);
         mainPane.setCenter(canvas);
         FXGraphics2D g2d = new FXGraphics2D(canvas.getGraphicsContext2D());
         init();
@@ -98,16 +107,69 @@ public class Game extends Application {
 
     }
 
+    private void keyReleased(KeyEvent e) {
+        switch (e.getCode()) {
+            case W:
+
+            case A:
+
+            case S:
+
+            case D:
+
+            case UP:
+
+            case DOWN:
+
+            case LEFT:
+
+            case RIGHT:
+
+        }
+    }
+
+    private void keyPressed(KeyEvent e) {
+        switch (e.getCode()) {
+            case W:
+
+            case A:
+
+            case S:
+
+            case D:
+
+            case UP:
+
+            case DOWN:
+
+            case LEFT:
+
+            case RIGHT:
+
+        }
+
+    }
+
+    private void mouseScrolled(ScrollEvent e) {
+        double zoomFactor = 1.05;
+        double deltaY = e.getDeltaY();
+
+        if (deltaY < 0) {
+            zoomFactor = 0.95;
+        }
+        canvas.setScaleX(canvas.getScaleX() * zoomFactor);
+        canvas.setScaleY(canvas.getScaleY() * zoomFactor);
+        e.consume();
+    }
+
     public void init() {
-        // testImage = ImageLoader.loadImage("/Textures/groundtiles.png"); // Voorbeeld van het laden en initializen van een image, als test
-        //sheet = new SpriteSheet(testImage);
-        //spritesheet = ImageLoader.loadImage("sprite.png");
 
         Assets.init();  // Initialiseren van de assets.
         gameState = new GameState(this);
-        menuState = new MenuState (this);
-        settingState = new SettingsState (this);
+        menuState = new MenuState(this);
+        settingState = new SettingsState(this);
         State.setState(gameState);
+
     }
 
     public void draw(FXGraphics2D graphics) { // AKA render
@@ -134,15 +196,15 @@ public class Game extends Application {
     public void update(double deltaTime) {  // update aka update
         if (State.getState() != null) {
             long now = System.nanoTime();
-
             long last = -1;
             State.getState().update(now - last / 1000000000.0);
-
         }
 
+
     }
-    
-    public ResizableCanvas getCanvas ( ) {
+
+    public ResizableCanvas getCanvas() {
         return canvas;
     }
+
 }

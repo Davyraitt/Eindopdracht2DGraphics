@@ -13,13 +13,36 @@ public class Player extends Creature {
 	
 	
 	public void update ( ) {
-	
+		moveDown();
+
 	}
 	
 	
 	public void draw ( Graphics g ) {
 		g.drawImage ( Assets.playertile, (int)x ,(int)y, null );
 	}
+
+	@Override
+	public void moveUp() {
+		y = y - 2;
+	}
+
+	@Override
+	public void moveDown() {
+		y = y + 2;
+	}
+
+	@Override
+	public void moveLeft() {
+		x = x - 2;
+	}
+
+	@Override
+	public void moveRight() {
+		x = x + 2;
+	}
+
+
 	
 	
 	
