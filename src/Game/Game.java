@@ -134,8 +134,10 @@ public class Game extends Application {
     public void update(double deltaTime) {  // update aka update
         if (State.getState() != null) {
             long now = System.nanoTime();
+
             long last = -1;
             State.getState().update(now - last / 1000000000.0);
+
         }
 
     }

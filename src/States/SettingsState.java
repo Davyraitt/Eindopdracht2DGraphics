@@ -10,7 +10,7 @@ public class SettingsState extends State {
     
     @Override
     public void draw(FXGraphics2D graphics) {
-        
+
     }
 
     @Override
