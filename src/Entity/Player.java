@@ -2,8 +2,7 @@ package Entity;
 
 import Entity.Creature.Creature;
 import Tools.Assets;
-import javafx.scene.input.KeyEvent;
-import org.jfree.fx.ResizableCanvas;
+
 
 import java.awt.*;
 
