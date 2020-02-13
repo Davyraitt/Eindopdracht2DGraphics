@@ -2,6 +2,7 @@ package States;
 
 import Entity.Player;
 import Game.Game;
+import Tiles.Tile;
 import org.jfree.fx.FXGraphics2D;
 
 public class GameState extends State {
@@ -17,6 +18,7 @@ public class GameState extends State {
     @Override
     public void draw(FXGraphics2D graphics) {
         player.draw ( graphics );
+        Tile.tiles[0].draw ( graphics, 0, 0 );
 
     }
     
