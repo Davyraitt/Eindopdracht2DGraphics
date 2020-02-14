@@ -7,7 +7,8 @@ public class Tile {
 	//STATIC VARIABLE
 	
 	
-	public static Tile[] tiles = new Tile[256];
+	public static Tile[] tiles = new Tile[256]; // Arrray in Tiles class,
+	//example: GrassTile has ID 0, it points to entry 0 in the arraylist
 	public static Tile GrassTile = new GrassTile ( 0 ); //creating new tile
 	public static Tile LavaTile = new LavaTile ( 1 ); //creating new tile
 	public static Tile WoodTile = new WoodTile ( 2 ); //creating new tile
