@@ -2,7 +2,6 @@ package States;
 
 import Entity.Player;
 import Game.Game;
-import Tiles.Tile;
 import World.World;
 import org.jfree.fx.FXGraphics2D;
 
@@ -13,8 +12,8 @@ public class GameState extends State {
 
     public GameState( Game game) {
         super (game);
-        player = new Player ( 100,100 );
-        world = new World("");
+        player = new Player ( game, 100,100 );
+        world = new World(game,  "D:/Java Projects/Eindopdracht2DGraphics/Eindopdracht2DGraphics/Resources/WorldFiles/World1.txt" );
     }
 
     @Override

@@ -26,8 +26,8 @@ import java.util.ArrayList;
 
 public class Game extends Application {
     //project data
-    private int width = 1920;
-    private int height = 1080;
+    private int width = 400;
+    private int height = 400;
     private ResizableCanvas canvas;
 
     //title of game

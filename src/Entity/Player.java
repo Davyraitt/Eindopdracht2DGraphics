@@ -1,6 +1,7 @@
 package Entity;
 
 import Entity.Creature.Creature;
+import Game.Game;
 import Tools.Assets;
 
 
@@ -8,8 +9,8 @@ import java.awt.*;
 
 public class Player extends Creature {
 	
-	public Player ( float x , float y ) {
-		super ( x , y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT );
+	public Player ( Game game, float x , float y ) {
+		super ( game, x , y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT );
 	}
 	
 	
