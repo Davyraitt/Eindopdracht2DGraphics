@@ -9,14 +9,11 @@ import java.awt.*;
 
 public abstract class Entity {
 	
-	
 	protected Game game;
-	protected float x,y;
+	protected float x, y;
 	protected int width, height;
 	
-	
-	
-	public Entity ( Game game, float x , float y, int width, int height) {
+	public Entity ( Game game , float x , float y , int width , int height ) {
 		this.game = game;
 		this.x = x;
 		this.y = y;
@@ -24,48 +21,47 @@ public abstract class Entity {
 		this.height = height;
 	}
 	
+	public abstract void update ( );
 	
-	public abstract void update ();
+	public abstract void draw ( Graphics g );
 	
-	public abstract void draw ( Graphics g);
-
-	public abstract void moveUp ();
-
-	public abstract void moveDown ();
-
-	public abstract void moveLeft ();
-
-	public abstract void moveRight ();
+	public abstract void moveUp ( );
 	
-	public float getX ( ) {
+	public abstract void moveDown ( );
+	
+	public abstract void moveLeft ( );
+	
+	public abstract void moveRight ( );
+	
+	public float getX() {
 		return x;
 	}
 	
-	public void setX ( float x ) {
+	public void setX(float x) {
 		this.x = x;
 	}
 	
-	public float getY ( ) {
+	public float getY() {
 		return y;
 	}
 	
-	public void setY ( float y ) {
+	public void setY(float y) {
 		this.y = y;
 	}
 	
-	public int getWidth ( ) {
+	public int getWidth() {
 		return width;
 	}
 	
-	public void setWidth ( int width ) {
+	public void setWidth(int width) {
 		this.width = width;
 	}
 	
-	public int getHeight ( ) {
+	public int getHeight() {
 		return height;
 	}
 	
-	public void setHeight ( int height ) {
+	public void setHeight(int height) {
 		this.height = height;
 	}
 }

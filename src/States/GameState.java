@@ -18,6 +18,7 @@ public class GameState extends State {
 
     @Override
     public void draw(FXGraphics2D graphics) {
+  
         world.draw(graphics);
         player.draw ( graphics );
 

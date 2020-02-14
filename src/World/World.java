@@ -14,6 +14,9 @@ public class World {
     private int spawnY;
     private Game game;
     
+   
+    
+    
     private int [][] tiles;
 
     public World(Game game, String path) {
@@ -28,11 +31,12 @@ public class World {
     }
 
     public void draw(Graphics g) {
-        for ( int y = 0 ; y < height ; y++ )
+       
+           for ( int y = 0 ; y < height ; y++ ) //going down one row
         {
-            for ( int x = 0 ; x < width ; x++ )
+            for ( int x = 0 ; x < width ; x++ ) //looping from the first left tile to the far right tile
             {
-                getTile ( x, y ).draw ( g, x * Tile.tileWidth, y * Tile.tileHeight);
+                getTile ( x, y ).draw ( g, (int) (x * Tile.tileWidth - game.getGameCamera ().getxOffset ()), (int) (y * Tile.tileHeight - game.getGameCamera ().getyOffset ()));
             }
         }
         

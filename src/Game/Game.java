@@ -52,7 +52,11 @@ public class Game extends Application {
     private State settingState;
     private State gameState;
 
-    //player attribute
+    
+    //Camera
+    private GameCamera gameCamera;
+    
+    
 
     public static void main(String[] args) {
         launch(Game.class); //launches the main game
@@ -152,9 +156,9 @@ public class Game extends Application {
         e.consume();
     }
 
-    public void init() {
-
-        Assets.init();  // Initialiseren van de assets.
+    public void init() { // initialisation method
+        Assets.init();
+        gameCamera = new GameCamera ( this, 0,0 );
         gameState = new GameState(this);
         menuState = new MenuState(this);
         settingState = new SettingsState(this);
@@ -169,7 +173,7 @@ public class Game extends Application {
         graphics.setBackground(Color.white);
 
         //Eerst het scherm leeg maken
-        graphics.clearRect(0, 0, 1920, 1080);
+        graphics.clearRect(0, 0, this.width, this.height);
         // graphics.drawImage(testImage, 0, 0, null); // drawing a simple image
 
         // Hier begin ik met tekenen
@@ -195,6 +199,16 @@ public class Game extends Application {
     public ResizableCanvas getCanvas() {
         return canvas;
     }
-
-
+    
+    public GameCamera getGameCamera ( ) {
+        return gameCamera;
+    }
+    
+    public int getWidth ( ) {
+        return this.width;
+    }
+    
+    public int getHeight ( ) {
+        return this.height;
+    }
 }

@@ -9,14 +9,19 @@ import java.awt.*;
 
 public class Player extends Creature {
 	
-	public Player ( Game game, float x , float y ) {
-		super ( game, x , y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT );
+	private Game game;
+	
+	public Player(Game game, float x, float y) {
+		super(game, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+		this.game = game;
 	}
 	
 	
 	@Override
 	public void update (  ) {
 		getInput ();
+		move ();
+		game.getGameCamera ().centerOnEntity ( this );
 	
 	}
 	
@@ -28,7 +33,7 @@ public class Player extends Creature {
 	
 	
 	public void draw ( Graphics g ) {
-		g.drawImage ( Assets.playertile, (int)x ,(int)y, width, height, null );
+		g.drawImage(Assets.playertile, (int) (x - game.getGameCamera().getxOffset()), (int) (y - game.getGameCamera().getyOffset()), width, height, null);
 	}
 
 	@Override
