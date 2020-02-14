@@ -3,17 +3,17 @@ package Entity;
 import Entity.Creature.Creature;
 import Game.Game;
 import Tools.Assets;
-
+import Game.Handler;
 
 import java.awt.*;
 
 public class Player extends Creature {
 	
-	private Game game;
+	private Handler handler;
 	
-	public Player(Game game, float x, float y) {
-		super(game, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
-		this.game = game;
+	public Player(Handler handler, float x, float y) {
+		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+		this.handler = handler;
 	}
 	
 	
@@ -21,7 +21,7 @@ public class Player extends Creature {
 	public void update (  ) {
 		getInput ();
 		move ();
-		game.getGameCamera ().centerOnEntity ( this );
+		handler.getGameCamera ().centerOnEntity ( this );
 	
 	}
 	
@@ -33,7 +33,7 @@ public class Player extends Creature {
 	
 	
 	public void draw ( Graphics g ) {
-		g.drawImage(Assets.playertile, (int) (x - game.getGameCamera().getxOffset()), (int) (y - game.getGameCamera().getyOffset()), width, height, null);
+		g.drawImage(Assets.playertile, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 	}
 
 	@Override

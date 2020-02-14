@@ -2,13 +2,14 @@ package States;
 
 import Game.Game;
 import org.jfree.fx.FXGraphics2D;
+import Game.Handler;
 
 public abstract class State {
     
-    protected Game game;
+    protected Handler handler;
     
-    public State ( Game game ) {
-        this.game = game;
+    public State ( Handler handler ) {
+        this.handler = handler;
     }
     
     private static State currentState = null;

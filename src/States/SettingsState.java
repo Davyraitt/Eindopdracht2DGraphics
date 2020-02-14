@@ -1,11 +1,12 @@
 package States;
 
 import Game.Game;
+import Game.Handler;
 import org.jfree.fx.FXGraphics2D;
 
 public class SettingsState extends State {
-    public SettingsState ( Game game ) {
-        super ( game );
+    public SettingsState ( Handler handler ) {
+        super ( handler );
     }
     
     @Override

@@ -5,6 +5,7 @@ import Tiles.Tile;
 import Tools.Utils;
 
 import java.awt.*;
+import Game.Handler;
 
 public class World {
 
@@ -12,15 +13,15 @@ public class World {
     private int height;
     private int spawnX;
     private int spawnY;
-    private Game game;
+    private Handler handler;
     
    
     
     
     private int [][] tiles;
 
-    public World(Game game, String path) {
-              this.game = game;
+    public World(Handler handler, String path) {
+              this.handler = handler;
               loadWorld(path);
        
 
@@ -36,7 +37,7 @@ public class World {
         {
             for ( int x = 0 ; x < width ; x++ ) //looping from the first left tile to the far right tile
             {
-                getTile ( x, y ).draw ( g, (int) (x * Tile.tileWidth - game.getGameCamera ().getxOffset ()), (int) (y * Tile.tileHeight - game.getGameCamera ().getyOffset ()));
+                getTile ( x, y ).draw ( g, (int) (x * Tile.tileWidth - handler.getGameCamera ().getxOffset ()), (int) (y * Tile.tileHeight - handler.getGameCamera ().getyOffset ()));
             }
         }
         

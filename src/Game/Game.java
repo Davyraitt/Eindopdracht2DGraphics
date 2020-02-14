@@ -56,6 +56,9 @@ public class Game extends Application {
     //Camera
     private GameCamera gameCamera;
     
+    //Handler
+    private Handler handler;
+    
     
 
     public static void main(String[] args) {
@@ -159,9 +162,10 @@ public class Game extends Application {
     public void init() { // initialisation method
         Assets.init();
         gameCamera = new GameCamera ( this, 0,0 );
-        gameState = new GameState(this);
-        menuState = new MenuState(this);
-        settingState = new SettingsState(this);
+        handler = new Handler ( this ); // we pass in this, because it takes a game object (this class)
+        gameState = new GameState(handler); // we pass in this, because it takes a game object (this class)
+        menuState = new MenuState(handler); // we pass in this, because it takes a game object (this class)
+        settingState = new SettingsState(handler); // we pass in this, because it takes a game object (this class)
 
         State.setState(gameState);
 

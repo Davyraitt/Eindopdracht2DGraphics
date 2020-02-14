@@ -2,6 +2,7 @@ package States;
 
 import Entity.Player;
 import Game.Game;
+import Game.Handler;
 import World.World;
 import org.jfree.fx.FXGraphics2D;
 
@@ -10,10 +11,12 @@ public class GameState extends State {
     private Player player;
     private World world;
 
-    public GameState( Game game) {
-        super (game);
-        player = new Player ( game, 100,100 );
-        world = new World(game,  "D:/Java Projects/Eindopdracht2DGraphics/Eindopdracht2DGraphics/Resources/WorldFiles/World1.txt" );
+    public GameState( Handler handler) {
+        super (handler);
+        world = new World(handler,  "D:/Java Projects/Eindopdracht2DGraphics/Eindopdracht2DGraphics/Resources/WorldFiles/World1.txt" );
+        handler.setWorld ( world );
+        player = new Player ( handler, 100,100 );
+        
     }
 
     @Override
