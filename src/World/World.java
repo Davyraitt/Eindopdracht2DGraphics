@@ -45,6 +45,11 @@ public class World {
     }
 
     public Tile getTile (int x, int y){ // asks for x and y coordinates
+           
+           if (x < 0 || y < 0 || x>= width || y >= height) {
+                  return Tile.GrassTile;
+           }
+           
         Tile tile = Tile.tiles[tiles[x][y]]; // creates a new tile, calls the tiles arraylist from Tile.java first, then inputs our arraylist
         if (tile == null) { // if the tile doesnt exist, we place a grasstile to prevent errors
             return Tile.GrassTile;

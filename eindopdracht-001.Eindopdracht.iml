@@ -12,5 +12,6 @@
     <orderEntry type="library" name="tmc-junit-runner" level="project" />
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="dyn4j-v3.3.0" level="project" />
+    <orderEntry type="library" name="Resources" level="project" />
   </component>
 </module>

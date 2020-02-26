@@ -3,6 +3,7 @@ package Entity.Creature;
 import Entity.Entity;
 import Game.Game;
 import Game.Handler;
+import Tiles.Tile;
 import org.jfree.fx.ResizableCanvas;
 
 import java.awt.*;
@@ -32,9 +33,36 @@ public class Creature extends Entity {
 	}
 	
 	public void move ( ) {
-		x += xMove;
-		y += yMove;
+		moveX ();
+		moveY ();
 		
+		
+	}
+	
+	public void moveX () {
+		if (xMove > 0) {
+			int tx = (int) ( x + xMove + bounds.x + bounds.width) / Tile.tileWidth;
+			
+			if (!colissionWidthTile ( tx, (int) (y + bounds.y) / Tile.tileHeight )) {
+				x += xMove;
+			}
+			
+			
+		} // we are moving right
+		
+		else if (xMove < 0) {
+			x += xMove;
+		} // we are moving left
+		
+	
+	}
+	
+	public void moveY () {
+		y += yMove;
+	}
+	
+	protected boolean colissionWidthTile (int x, int y) {
+		return handler.getWorld ().getTile ( x,y  ).isSolid ();
 	}
 	
 	
@@ -53,6 +81,10 @@ public class Creature extends Entity {
 	public void setSpeed ( float speed ) {
 		this.speed = speed;
 	}
+	
+	
+	
+	
 	
 	public void draw ( Graphics g ) {
 	
