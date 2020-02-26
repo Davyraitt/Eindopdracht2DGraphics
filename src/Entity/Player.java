@@ -22,9 +22,9 @@ public class Player extends Creature {
 		this.handler = handler;
 		
 		bounds.x = 0;
-		bounds.y = 0;
+		bounds.y = 12;
 		bounds.width = 32;
-		bounds.height = 32;
+		bounds.height = 20;
 	}
 	
 	@Override
@@ -66,9 +66,10 @@ public class Player extends Creature {
 		g.drawImage ( Assets.playertile , ( int ) ( x - handler.getGameCamera ( ).getxOffset ( ) ) ,
 			( int ) ( y - handler.getGameCamera ( ).getyOffset ( ) ) , width , height , null );
 //		g.setColor ( Color.red ); // shows the bound box
-		g.fillRect ( ( int ) ( x + bounds.x - handler.getGameCamera ( ).getxOffset ( ) ) ,
-			( int ) ( y + bounds.y - handler.getGameCamera ( ).getyOffset ( ) ) , bounds.width ,
-			bounds.height );
+//		g.fillRect ( ( int ) ( x + bounds.x - handler.getGameCamera ( ).getxOffset ( ) ) ,
+//			( int ) ( y + bounds.y - handler.getGameCamera ( ).getyOffset ( ) ) , bounds.width ,
+//			bounds.height );
+		// uncomment above to see the bounds box
 		// fills the bound box
 	}
 	
