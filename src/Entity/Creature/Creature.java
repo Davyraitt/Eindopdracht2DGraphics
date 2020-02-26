@@ -11,7 +11,7 @@ import java.awt.*;
 public class Creature extends Entity {
 	
 	public static final int DEFAULT_HEALTH = 10;
-	public static final float DEFAULT_SPEED = 3.0f;
+	public static final float DEFAULT_SPEED = 6.0f;
 	public static final int DEFAULT_CREATURE_WIDTH = 32;
 	public static final int DEFAULT_CREATURE_HEIGHT = 32;
 	
@@ -39,30 +39,44 @@ public class Creature extends Entity {
 		
 	}
 	
-	public void moveX () {
-		if (xMove > 0) {
-			int tx = (int) ( x + xMove + bounds.x + bounds.width) / Tile.tileWidth;
+	public void moveX(){
+		if(xMove > 0){//Moving right
+			int tx = (int) (x + xMove + bounds.x + bounds.width) / Tile.tileWidth;
 			
-			if (!colissionWidthTile ( tx, (int) (y + bounds.y) / Tile.tileHeight )) {
+			if(!collisionWithTile(tx, (int) (y + bounds.y) / Tile.tileHeight) &&
+				!collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.tileHeight)){
 				x += xMove;
 			}
+		}else if(xMove < 0){//Moving left
+			int tx = (int) (x + xMove + bounds.x) / Tile.tileWidth;
 			
-			
-		} // we are moving right
-		
-		else if (xMove < 0) {
-			x += xMove;
-		} // we are moving left
-		
-	
+			if(!collisionWithTile(tx, (int) (y + bounds.y) / Tile.tileHeight) &&
+				!collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.tileHeight)){
+				x += xMove;
+			}
+		}
 	}
 	
-	public void moveY () {
-		y += yMove;
+	public void moveY(){
+		if(yMove < 0){//Up
+			int ty = (int) (y + yMove + bounds.y) / Tile.tileHeight;
+			
+			if(!collisionWithTile((int) (x + bounds.x) / Tile.tileWidth, ty) &&
+				!collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.tileWidth, ty)){
+				y += yMove;
+			}
+		}else if(yMove > 0){//Down
+			int ty = (int) (y + yMove + bounds.y + bounds.height) / Tile.tileHeight;
+			
+			if(!collisionWithTile((int) (x + bounds.x) / Tile.tileWidth, ty) &&
+				!collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.tileWidth, ty)){
+				y += yMove;
+			}
+		}
 	}
 	
-	protected boolean colissionWidthTile (int x, int y) {
-		return handler.getWorld ().getTile ( x,y  ).isSolid ();
+	protected boolean collisionWithTile(int x, int y){
+		return handler.getWorld().getTile(x, y).isSolid();
 	}
 	
 	
