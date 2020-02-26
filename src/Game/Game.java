@@ -163,7 +163,7 @@ public class Game extends Application {
 	public void init ( ) { // initialisation method
 		Assets.init ( );
 		
-		gameCamera = new GameCamera ( this , 0 , 0 );
+		gameCamera = new GameCamera ( handler , 0 , 0 );
 		handler = new Handler ( this ); // we pass in this, because it takes a game object (this class)
 		gameState = new GameState ( handler ); // we pass in this, because it takes a game object (this class)
 		menuState = new MenuState ( handler ); // we pass in this, because it takes a game object (this class)
