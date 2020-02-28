@@ -3,17 +3,27 @@ package Entity;
 import Entity.Creature.Creature;
 import Game.Game;
 import Tiles.Tile;
+import Tools.Animation;
 import Tools.Assets;
 import Game.Handler;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.nio.Buffer;
 
 public class Player extends Creature {
 	
+	//Walking booleans
 	boolean moveUpPressed = false;
 	boolean moveDownPressed = false;
 	boolean moveRightPressed = false;
 	boolean moveLeftPressed = false;
+	
+	//Animations
+	private Animation animationDown;
+	private Animation animationUp;
+	private Animation animationLeft;
+	private Animation animationRight;
 	
 	private Handler handler;
 	
@@ -25,10 +35,21 @@ public class Player extends Creature {
 		bounds.y = 12;
 		bounds.width = 32;
 		bounds.height = 20;
+		
+		animationDown = new Animation ( 300 , Assets.playerDown );
+		animationUp = new Animation ( 300 , Assets.playerUp );
+		animationLeft = new Animation ( 300 , Assets.playerLeft );
+		animationRight = new Animation ( 300 , Assets.playerRight );
+		
 	}
 	
 	@Override
 	public void update ( ) {
+		
+		animationDown.update ( );
+		animationUp.update ( );
+		animationLeft.update ( );
+		animationRight.update ( );
 		getInput ( );
 		move ( );
 		handler.getGameCamera ( ).centerOnEntity ( this );
@@ -42,47 +63,62 @@ public class Player extends Creature {
 		if ( moveUpPressed )
 		{
 			yMove = -speed;
-			moveUpPressed = false;
+			
 		}
 		if ( moveDownPressed )
 		{
 			yMove = speed;
-			moveDownPressed = false;
 		}
 		if ( moveLeftPressed )
 		{
 			xMove = -speed;
-			moveLeftPressed = false;
 		}
-	
+		
 		if ( moveRightPressed )
 		{
 			xMove = speed;
-			moveRightPressed = false;
 		}
 	}
 	
 	public void draw ( Graphics g ) {
-		g.drawImage ( Assets.playertile , ( int ) ( x - handler.getGameCamera ( ).getxOffset ( ) ) ,
+		g.drawImage ( getCurrentAnimationFrame ( ) , ( int ) ( x - handler.getGameCamera ( ).getxOffset ( ) ) ,
 			( int ) ( y - handler.getGameCamera ( ).getyOffset ( ) ) , width , height , null );
-//		g.setColor ( Color.red ); // shows the bound box
-//		g.fillRect ( ( int ) ( x + bounds.x - handler.getGameCamera ( ).getxOffset ( ) ) ,
-//			( int ) ( y + bounds.y - handler.getGameCamera ( ).getyOffset ( ) ) , bounds.width ,
-//			bounds.height );
+		//		g.setColor ( Color.red ); // shows the bound box
+		//		g.fillRect ( ( int ) ( x + bounds.x - handler.getGameCamera ( ).getxOffset ( ) ) ,
+		//			( int ) ( y + bounds.y - handler.getGameCamera ( ).getyOffset ( ) ) , bounds.width ,
+		//			bounds.height );
 		// uncomment above to see the bounds box
 		// fills the bound box
+	}
+	
+	private BufferedImage getCurrentAnimationFrame ( ) {
+		if ( xMove < 0 )
+		{
+			return animationLeft.getCurrentFrame ( );
+		} else if ( xMove > 0 )
+		{
+			return animationRight.getCurrentFrame ( );
+		} else if ( yMove < 0 )
+		{
+			return animationUp.getCurrentFrame ( );
+		} else
+		{
+			return animationDown.getCurrentFrame ( );
+		}
+		
+		
 	}
 	
 	public void move ( ) {
 		moveX ( );
 		moveY ( );
-		
 	}
 	
 	@Override
 	public void moveUp ( ) {
 		
 		moveUpPressed = true;
+		
 	}
 	
 	@Override
@@ -96,12 +132,40 @@ public class Player extends Creature {
 	public void moveLeft ( ) {
 		
 		moveLeftPressed = true;
+		
 	}
 	
 	@Override
 	public void moveRight ( ) {
 		
 		moveRightPressed = true;
+	}
+	
+	@Override
+	public void moveUpReleased ( ) {
+		
+		moveUpPressed = false;
+		
+	}
+	
+	@Override
+	public void moveDownReleased ( ) {
+		
+		moveDownPressed = false;
+		
+	}
+	
+	@Override
+	public void moveLeftReleased ( ) {
+		
+		moveLeftPressed = false;
+		
+	}
+	
+	@Override
+	public void moveRightReleased ( ) {
+		
+		moveRightPressed = false;
 	}
 	
 }

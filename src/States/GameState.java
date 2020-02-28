@@ -56,4 +56,24 @@ public class GameState extends State {
         player.moveLeft ();
     }
     
+    @Override
+    public void moveUpReleased ( ) {
+        player.moveUpReleased ();
+    }
+    
+    @Override
+    public void moveDownReleased ( ) {
+        player.moveDownReleased ();
+    }
+    
+    @Override
+    public void moveRightReleased ( ) {
+        player.moveRightReleased ();
+    }
+    
+    @Override
+    public void moveLeftReleased ( ) {
+        player.moveLeftReleased ();
+    }
+    
 }

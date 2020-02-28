@@ -11,7 +11,7 @@ import java.awt.*;
 public class Creature extends Entity {
 	
 	public static final int DEFAULT_HEALTH = 10;
-	public static final float DEFAULT_SPEED = 6.0f;
+	public static final float DEFAULT_SPEED = 1.0f;
 	public static final int DEFAULT_CREATURE_WIDTH = 32;
 	public static final int DEFAULT_CREATURE_HEIGHT = 32;
 	
@@ -19,8 +19,8 @@ public class Creature extends Entity {
 	protected float speed;
 	protected float xMove, yMove;
 	
-	public Creature ( Handler handler, float x , float y , int width , int height ) {
-		super (handler,  x , y , width , height );
+	public Creature ( Handler handler , float x , float y , int width , int height ) {
+		super ( handler , x , y , width , height );
 		health = DEFAULT_HEALTH;
 		speed = DEFAULT_SPEED;
 		xMove = 0;
@@ -33,72 +33,69 @@ public class Creature extends Entity {
 	}
 	
 	public void move ( ) {
-		moveX ();
-		moveY ();
-		
+		moveX ( );
+		moveY ( );
 		
 	}
 	
-	public void moveX(){
-		if(xMove > 0){//Moving right
-			int tx = (int) (x + xMove + bounds.x + bounds.width) / Tile.tileWidth;
+	public void moveX ( ) {
+		if ( xMove > 0 )
+		{//Moving right
+			int tx = ( int ) ( x + xMove + bounds.x + bounds.width ) / Tile.tileWidth;
 			
-			if(!collisionWithTile(tx, (int) (y + bounds.y) / Tile.tileHeight) &&
-				!collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.tileHeight)){
+			if ( !collisionWithTile ( tx , ( int ) ( y + bounds.y ) / Tile.tileHeight ) && !collisionWithTile ( tx , ( int ) ( y + bounds.y + bounds.height ) / Tile.tileHeight ) )
+			{
 				x += xMove;
-			}
-			else {
+			} else
+			{
 				x = tx * Tile.tileWidth - bounds.width - 1;
-		}
-		
-		}else if(xMove < 0)
+			}
+			
+		} else if ( xMove < 0 )
 		{//Moving left
 			int tx = ( int ) ( x + xMove + bounds.x ) / Tile.tileWidth;
 			
 			if ( !collisionWithTile ( tx , ( int ) ( y + bounds.y ) / Tile.tileHeight ) && !collisionWithTile ( tx , ( int ) ( y + bounds.y + bounds.height ) / Tile.tileHeight ) )
 			{
 				x += xMove;
-			}
-			
-			else {
+			} else
+			{
 				x = tx * Tile.tileWidth + Tile.tileHeight - bounds.x;
 			}
 		}
 		
-		
 	}
 	
-	public void moveY(){
-		if(yMove < 0){//Up
-			int ty = (int) (y + yMove + bounds.y) / Tile.tileHeight;
+	public void moveY ( ) {
+		if ( yMove < 0 )
+		{//Up
+			int ty = ( int ) ( y + yMove + bounds.y ) / Tile.tileHeight;
 			
-			if(!collisionWithTile((int) (x + bounds.x) / Tile.tileWidth, ty) &&
-				!collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.tileWidth, ty)){
+			if ( !collisionWithTile ( ( int ) ( x + bounds.x ) / Tile.tileWidth , ty ) && !collisionWithTile ( ( int ) ( x + bounds.x + bounds.width ) / Tile.tileWidth , ty ) )
+			{
 				y += yMove;
-			}
-			
-			else {
+			} else
+			{
 				y = ty * Tile.tileHeight * Tile.tileHeight - bounds.y;
 			}
 			
-		}else if(yMove > 0){//Down
-			int ty = (int) (y + yMove + bounds.y + bounds.height) / Tile.tileHeight;
+		} else if ( yMove > 0 )
+		{//Down
+			int ty = ( int ) ( y + yMove + bounds.y + bounds.height ) / Tile.tileHeight;
 			
-			if(!collisionWithTile((int) (x + bounds.x) / Tile.tileWidth, ty) &&
-				!collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.tileWidth, ty)){
+			if ( !collisionWithTile ( ( int ) ( x + bounds.x ) / Tile.tileWidth , ty ) && !collisionWithTile ( ( int ) ( x + bounds.x + bounds.width ) / Tile.tileWidth , ty ) )
+			{
 				y += yMove;
-			}
-			
-			else {
+			} else
+			{
 				y = ty * Tile.tileHeight - bounds.y - bounds.height - 1;
 			}
 		}
 	}
 	
-	protected boolean collisionWithTile(int x, int y){
-		return handler.getWorld().getTile(x, y).isSolid();
+	protected boolean collisionWithTile ( int x , int y ) {
+		return handler.getWorld ( ).getTile ( x , y ).isSolid ( );
 	}
-	
 	
 	public int getHealth ( ) {
 		return health;
@@ -115,10 +112,6 @@ public class Creature extends Entity {
 	public void setSpeed ( float speed ) {
 		this.speed = speed;
 	}
-	
-	
-	
-	
 	
 	public void draw ( Graphics g ) {
 	
@@ -141,6 +134,26 @@ public class Creature extends Entity {
 	
 	@Override
 	public void moveRight ( ) {
+	
+	}
+	
+	@Override
+	public void moveUpReleased ( ) {
+	
+	}
+	
+	@Override
+	public void moveDownReleased ( ) {
+	
+	}
+	
+	@Override
+	public void moveLeftReleased ( ) {
+	
+	}
+	
+	@Override
+	public void moveRightReleased ( ) {
 	
 	}
 	

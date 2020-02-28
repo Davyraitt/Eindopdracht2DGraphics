@@ -15,13 +15,13 @@ public abstract class Entity {
 	protected int width, height;
 	protected Rectangle bounds;
 	
-	public Entity ( Handler handler, float x , float y , int width , int height ) {
+	public Entity ( Handler handler , float x , float y , int width , int height ) {
 		this.handler = handler;
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		bounds = new Rectangle ( 0,0 , width, height);
+		bounds = new Rectangle ( 0 , 0 , width , height );
 	}
 	
 	public abstract void update ( );
@@ -36,35 +36,43 @@ public abstract class Entity {
 	
 	public abstract void moveRight ( );
 	
-	public float getX() {
+	public abstract void moveUpReleased ( );
+	
+	public abstract void moveDownReleased ( );
+	
+	public abstract void moveLeftReleased ( );
+	
+	public abstract void moveRightReleased ( );
+	
+	public float getX ( ) {
 		return x;
 	}
 	
-	public void setX(float x) {
+	public void setX ( float x ) {
 		this.x = x;
 	}
 	
-	public float getY() {
+	public float getY ( ) {
 		return y;
 	}
 	
-	public void setY(float y) {
+	public void setY ( float y ) {
 		this.y = y;
 	}
 	
-	public int getWidth() {
+	public int getWidth ( ) {
 		return width;
 	}
 	
-	public void setWidth(int width) {
+	public void setWidth ( int width ) {
 		this.width = width;
 	}
 	
-	public int getHeight() {
+	public int getHeight ( ) {
 		return height;
 	}
 	
-	public void setHeight(int height) {
+	public void setHeight ( int height ) {
 		this.height = height;
 	}
 }

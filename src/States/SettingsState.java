@@ -38,4 +38,24 @@ public class SettingsState extends State {
     public void moveLeft ( ) {
     
     }
+    
+    @Override
+    public void moveUpReleased ( ) {
+    
+    }
+    
+    @Override
+    public void moveDownReleased ( ) {
+    
+    }
+    
+    @Override
+    public void moveRightReleased ( ) {
+    
+    }
+    
+    @Override
+    public void moveLeftReleased ( ) {
+    
+    }
 }

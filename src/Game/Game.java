@@ -45,7 +45,6 @@ public class Game extends Application {
 	private BufferedImage testImage; // Testimage initialiseren
 	private SpriteSheet sheet;
 	
-	
 	//multiple states of the game, we declare them all here
 	private State menuState;
 	private State settingState;
@@ -64,8 +63,8 @@ public class Game extends Application {
 	@Override
 	public void start ( Stage stage ) throws Exception {
 		AudioInputStream audioIn =
-                     AudioSystem.getAudioInputStream ( getClass ( ).getResource ( "/Sound/music" + ".wav" ) ); //
-           // inputting sound
+			AudioSystem.getAudioInputStream ( getClass ( ).getResource ( "/Sound/music" + ".wav" ) ); //
+		// inputting sound
 		Clip clip = AudioSystem.getClip ( ); // inputting sound
 		clip.open ( audioIn ); // inputting sound
 		clip.start ( ); // inputting sound
@@ -74,6 +73,7 @@ public class Game extends Application {
 		canvas.setFocusTraversable ( true );
 		canvas.setOnScroll ( this::mouseScrolled ); // mouseScrolled method is called when the user scrolls
 		canvas.setOnKeyPressed ( this::keyPressed ); // keyPressed method is called when the user presses a key
+		canvas.setOnKeyReleased ( this::keyReleased ); // keyPressed method is called when the user presses a key
 		mainPane.setCenter ( canvas );
 		FXGraphics2D g2d = new FXGraphics2D ( canvas.getGraphicsContext2D ( ) );
 		init ( );
@@ -114,6 +114,37 @@ public class Game extends Application {
 		stage.setTitle ( gameTitle );
 		stage.show ( );
 		
+	}
+	
+	private void keyReleased ( KeyEvent e ) {
+		switch ( e.getCode ( ) )
+		{
+			case W:
+				
+				gameState.moveUpReleased ( );
+				break;
+			case A:
+				gameState.moveLeftReleased ( );
+				break;
+			case S:
+				gameState.moveDownReleased ( );
+				break;
+			case D:
+				gameState.moveRightReleased ( );
+				break;
+			case UP:
+				gameState.moveUpReleased ( );
+				break;
+			case DOWN:
+				gameState.moveDownReleased ( );
+				break;
+			case LEFT:
+				gameState.moveLeftReleased ( );
+				break;
+			case RIGHT:
+				gameState.moveRightReleased ( );
+				break;
+		}
 	}
 	
 	private void keyPressed ( KeyEvent e ) {
@@ -168,7 +199,7 @@ public class Game extends Application {
 		gameState = new GameState ( handler ); // we pass in this, because it takes a game object (this class)
 		menuState = new MenuState ( handler ); // we pass in this, because it takes a game object (this class)
 		settingState = new SettingsState ( handler ); // we pass in this, because it takes a game object (this
-           // class)
+		// class)
 		
 		State.setState ( gameState );
 		

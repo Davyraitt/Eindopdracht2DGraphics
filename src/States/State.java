@@ -31,6 +31,10 @@ public abstract class State {
     public abstract void moveDown();
     public abstract void moveRight();
     public abstract void moveLeft();
+    public abstract void moveUpReleased();
+    public abstract void moveDownReleased();
+    public abstract void moveRightReleased();
+    public abstract void moveLeftReleased();
     
 
 }

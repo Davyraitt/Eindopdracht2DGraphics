@@ -1,5 +1,6 @@
 package Game;
 
+import Input.KeyManager;
 import World.World;
 
 public class Handler {
@@ -26,6 +27,7 @@ public class Handler {
 	public GameCamera getGameCamera () {
 		return game.getGameCamera (); // getter for the camera of the game, gets the camera from the main game method getter
 	}
+	
 	
 	
 	
