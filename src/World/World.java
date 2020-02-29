@@ -1,5 +1,8 @@
 package World;
 
+import Entity.EntityManager;
+import Entity.Player;
+import Entity.Statics.Tree;
 import Game.Game;
 import Tiles.Tile;
 import Tools.Utils;
@@ -15,20 +18,35 @@ public class World {
     private int spawnY;
     private Handler handler;
     
-   
-    
-    
     private int [][] tiles;
+    
+    
+    //Entities
+       private EntityManager entityManager;
 
     public World(Handler handler, String path) {
               this.handler = handler;
+              
+              //creating the entity manager
+              entityManager = new EntityManager (handler, new Player (handler, 100,100));
+              
+              // add the static entities here
+              entityManager.addEntity ( new Tree (handler, 100, 200) );
+              entityManager.addEntity ( new Tree (handler, 100, 300) );
+              entityManager.addEntity ( new Tree (handler, 100, 400) );
+           
+              
+              
+              
               loadWorld(path);
-       
+              
+              entityManager.getPlayer().setX ( spawnX );
+              entityManager.getPlayer ().setY ( spawnY );
 
     }
 
     public void update () {
-
+              entityManager.update ();
     }
 
     public void draw(Graphics g) {
@@ -41,6 +59,7 @@ public class World {
             }
         }
         
+           entityManager.draw ( g );
     
     }
 
@@ -80,5 +99,51 @@ public class World {
        
        public int getHeight ( ) {
               return height;
+       }
+       
+       
+       public void moveUp ( ) {
+           entityManager.getPlayer ().moveUp ();
+              entityManager.getPlayer ().moveUp ();
+       }
+       
+       public EntityManager getEntityManager ( ) {
+              return entityManager;
+       }
+       
+       
+       
+       
+       public void moveDown ( ) {
+              entityManager.getPlayer ().moveDown ();       }
+       
+       
+       public void moveRight ( ) {
+              entityManager.getPlayer ().moveRight ();
+       }
+       
+       
+       public void moveLeft ( ) {
+              entityManager.getPlayer ().moveLeft ();
+       }
+       
+       
+       public void moveUpReleased ( ) {
+              entityManager.getPlayer ().moveUpReleased ();
+       }
+       
+       
+       public void moveDownReleased ( ) {
+              entityManager.getPlayer ().moveDownReleased ();
+       }
+       
+       
+       public void moveRightReleased ( ) {
+              entityManager.getPlayer ().moveRightReleased ();
+       }
+       
+       
+       public void moveLeftReleased ( ) {
+              entityManager.getPlayer ().moveLeftReleased ();
        }
 }

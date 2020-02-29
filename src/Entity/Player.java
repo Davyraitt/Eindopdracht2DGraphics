@@ -31,9 +31,9 @@ public class Player extends Creature {
 		super ( handler , x , y , Creature.DEFAULT_CREATURE_WIDTH , Creature.DEFAULT_CREATURE_HEIGHT );
 		this.handler = handler;
 		
-		bounds.x = 0;
+		bounds.x = 6;
 		bounds.y = 12;
-		bounds.width = 32;
+		bounds.width = 20;
 		bounds.height = 20;
 		
 		animationDown = new Animation ( 300 , Assets.playerDown );
@@ -54,39 +54,50 @@ public class Player extends Creature {
 		move ( );
 		handler.getGameCamera ( ).centerOnEntity ( this );
 		
+		
+		
 	}
 	
 	private void getInput ( ) {
 		xMove = 0;
 		yMove = 0;
 		
-		if ( moveUpPressed )
-		{
-			yMove = -speed;
+	
+		
+		if(!checkEntityCollisions(xMove, 0f)) {
 			
-		}
-		if ( moveDownPressed )
-		{
-			yMove = speed;
-		}
-		if ( moveLeftPressed )
-		{
-			xMove = -speed;
+			if ( moveLeftPressed )
+			{
+				xMove = -speed;
+			}
+			
+			if ( moveRightPressed )
+			{
+				xMove = speed;
+			}
 		}
 		
-		if ( moveRightPressed )
+		if(!checkEntityCollisions(0f, yMove))
 		{
-			xMove = speed;
+			if ( moveUpPressed )
+			{
+				yMove = -speed;
+				
+			}
+			if ( moveDownPressed )
+			{
+				yMove = speed;
+			}
 		}
 	}
 	
 	public void draw ( Graphics g ) {
 		g.drawImage ( getCurrentAnimationFrame ( ) , ( int ) ( x - handler.getGameCamera ( ).getxOffset ( ) ) ,
 			( int ) ( y - handler.getGameCamera ( ).getyOffset ( ) ) , width , height , null );
-		//		g.setColor ( Color.red ); // shows the bound box
-		//		g.fillRect ( ( int ) ( x + bounds.x - handler.getGameCamera ( ).getxOffset ( ) ) ,
-		//			( int ) ( y + bounds.y - handler.getGameCamera ( ).getyOffset ( ) ) , bounds.width ,
-		//			bounds.height );
+//		g.setColor ( Color.red ); // shows the bound box
+//		g.fillRect ( ( int ) ( x + bounds.x - handler.getGameCamera ( ).getxOffset ( ) ) ,
+//			( int ) ( y + bounds.y - handler.getGameCamera ( ).getyOffset ( ) ) , bounds.width ,
+//			bounds.height );
 		// uncomment above to see the bounds box
 		// fills the bound box
 	}
@@ -105,7 +116,6 @@ public class Player extends Creature {
 		{
 			return animationDown.getCurrentFrame ( );
 		}
-		
 		
 	}
 	
