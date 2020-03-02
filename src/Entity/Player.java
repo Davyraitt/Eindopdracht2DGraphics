@@ -54,17 +54,15 @@ public class Player extends Creature {
 		move ( );
 		handler.getGameCamera ( ).centerOnEntity ( this );
 		
-		
-		
 	}
 	
 	private void getInput ( ) {
 		xMove = 0;
 		yMove = 0;
 		
-	
 		
-		if(!checkEntityCollisions(xMove, 0f)) {
+		if ( !checkEntityCollisions ( xMove , 0f ) )
+		{
 			
 			if ( moveLeftPressed )
 			{
@@ -77,7 +75,7 @@ public class Player extends Creature {
 			}
 		}
 		
-		if(!checkEntityCollisions(0f, yMove))
+		if ( !checkEntityCollisions ( 0f , yMove ) )
 		{
 			if ( moveUpPressed )
 			{
@@ -94,10 +92,10 @@ public class Player extends Creature {
 	public void draw ( Graphics g ) {
 		g.drawImage ( getCurrentAnimationFrame ( ) , ( int ) ( x - handler.getGameCamera ( ).getxOffset ( ) ) ,
 			( int ) ( y - handler.getGameCamera ( ).getyOffset ( ) ) , width , height , null );
-//		g.setColor ( Color.red ); // shows the bound box
-//		g.fillRect ( ( int ) ( x + bounds.x - handler.getGameCamera ( ).getxOffset ( ) ) ,
-//			( int ) ( y + bounds.y - handler.getGameCamera ( ).getyOffset ( ) ) , bounds.width ,
-//			bounds.height );
+		//		g.setColor ( Color.red ); // shows the bound box
+		//		g.fillRect ( ( int ) ( x + bounds.x - handler.getGameCamera ( ).getxOffset ( ) ) ,
+		//			( int ) ( y + bounds.y - handler.getGameCamera ( ).getyOffset ( ) ) , bounds.width ,
+		//			bounds.height );
 		// uncomment above to see the bounds box
 		// fills the bound box
 	}
