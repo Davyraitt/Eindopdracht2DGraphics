@@ -31,10 +31,10 @@ public class Player extends Creature {
 		super ( handler , x , y , Creature.DEFAULT_CREATURE_WIDTH , Creature.DEFAULT_CREATURE_HEIGHT );
 		this.handler = handler;
 		
-		bounds.x = 6;
-		bounds.y = 12;
-		bounds.width = 20;
-		bounds.height = 20;
+		bounds.x = 8;
+		bounds.y = 16;
+		bounds.width = 16;
+		bounds.height = 16;
 		
 		animationDown = new Animation ( 300 , Assets.playerDown );
 		animationUp = new Animation ( 300 , Assets.playerUp );
@@ -60,42 +60,37 @@ public class Player extends Creature {
 		xMove = 0;
 		yMove = 0;
 		
+		//
 		
-		if ( !checkEntityCollisions ( xMove , 0f ) )
+		if ( moveLeftPressed )
 		{
-			
-			if ( moveLeftPressed )
-			{
-				xMove = -speed;
-			}
-			
-			if ( moveRightPressed )
-			{
-				xMove = speed;
-			}
+			xMove = -speed;
 		}
 		
-		if ( !checkEntityCollisions ( 0f , yMove ) )
+		if ( moveRightPressed )
 		{
-			if ( moveUpPressed )
-			{
-				yMove = -speed;
-				
-			}
-			if ( moveDownPressed )
-			{
-				yMove = speed;
-			}
+			xMove = speed;
 		}
+		
+		if ( moveUpPressed )
+		{
+			yMove = -speed;
+			
+		}
+		if ( moveDownPressed )
+		{
+			yMove = speed;
+		}
+		
 	}
 	
 	public void draw ( Graphics g ) {
 		g.drawImage ( getCurrentAnimationFrame ( ) , ( int ) ( x - handler.getGameCamera ( ).getxOffset ( ) ) ,
 			( int ) ( y - handler.getGameCamera ( ).getyOffset ( ) ) , width , height , null );
-		//		g.setColor ( Color.red ); // shows the bound box
-		//		g.fillRect ( ( int ) ( x + bounds.x - handler.getGameCamera ( ).getxOffset ( ) ) ,
-		//			( int ) ( y + bounds.y - handler.getGameCamera ( ).getyOffset ( ) ) , bounds.width ,
-		//			bounds.height );
+//				g.setColor ( Color.red ); // shows the bound box
+//				g.fillRect ( ( int ) ( x + bounds.x - handler.getGameCamera ( ).getxOffset ( ) ) ,
+//					( int ) ( y + bounds.y - handler.getGameCamera ( ).getyOffset ( ) ) , bounds.width ,
+//					bounds.height );
 		// uncomment above to see the bounds box
 		// fills the bound box
 	}
@@ -118,8 +113,10 @@ public class Player extends Creature {
 	}
 	
 	public void move ( ) {
-		moveX ( );
-		moveY ( );
+		if ( !checkEntityCollisions ( xMove , 0f ) )
+			moveX ( );
+		if ( !checkEntityCollisions ( 0f , yMove ) )
+			moveY ( );
 	}
 	
 	@Override

@@ -4,6 +4,7 @@ import Entity.Player;
 import Entity.Statics.Tree;
 import Game.Game;
 import Game.Handler;
+import Tiles.Tile;
 import World.World;
 import org.jfree.fx.FXGraphics2D;
 
@@ -23,7 +24,6 @@ public class GameState extends State {
 	
 	@Override
 	public void draw ( FXGraphics2D graphics ) {
-		
 		world.draw ( graphics );
 		
 		

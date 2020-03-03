@@ -32,64 +32,59 @@ public class Creature extends Entity {
 	
 	}
 	
-	public void move ( ) {
-		moveX ( );
-		moveY ( );
-		
+	
+	public void move(){
+		if(!checkEntityCollisions(xMove, 0f))
+			moveX();
+		if(!checkEntityCollisions(0f, yMove))
+			moveY();
 	}
 	
-	public void moveX ( ) {
-		if ( xMove > 0 )
-		{//Moving right
-			int tx = ( int ) ( x + xMove + bounds.x + bounds.width ) / Tile.tileWidth;
+	public void moveX(){
+		if(xMove > 0){//Moving right
+			int tx = (int) (x + xMove + bounds.x + bounds.width) / Tile.tileWidth;
 			
-			if ( !collisionWithTile ( tx , ( int ) ( y + bounds.y ) / Tile.tileHeight ) && !collisionWithTile ( tx , ( int ) ( y + bounds.y + bounds.height ) / Tile.tileHeight ) )
-			{
+			if(!collisionWithTile(tx, (int) (y + bounds.y) / Tile.tileHeight) &&
+				!collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.tileHeight)){
 				x += xMove;
-			} else
-			{
-				x = tx * Tile.tileWidth - bounds.width - 1;
+			}else{
+				x = tx * Tile.tileWidth - bounds.x - bounds.width - 1;
 			}
 			
-		} else if ( xMove < 0 )
-		{//Moving left
-			int tx = ( int ) ( x + xMove + bounds.x ) / Tile.tileWidth;
+		}else if(xMove < 0){//Moving left
+			int tx = (int) (x + xMove + bounds.x) / Tile.tileWidth;
 			
-			if ( !collisionWithTile ( tx , ( int ) ( y + bounds.y ) / Tile.tileHeight ) && !collisionWithTile ( tx , ( int ) ( y + bounds.y + bounds.height ) / Tile.tileHeight ) )
-			{
+			if(!collisionWithTile(tx, (int) (y + bounds.y) / Tile.tileHeight) &&
+				!collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.tileHeight)){
 				x += xMove;
-			} else
-			{
-				x = tx * Tile.tileWidth + Tile.tileHeight - bounds.x;
+			}else{
+				x = tx * Tile.tileWidth + Tile.tileWidth - bounds.x;
 			}
+			
 		}
-		
 	}
 	
-	public void moveY ( ) {
-		if ( yMove < 0 )
-		{//Up
-			int ty = ( int ) ( y + yMove + bounds.y ) / Tile.tileHeight;
+	public void moveY(){
+		if(yMove < 0){//Up
+			int ty = (int) (y + yMove + bounds.y) / Tile.tileHeight;
 			
-			if ( !collisionWithTile ( ( int ) ( x + bounds.x ) / Tile.tileWidth , ty ) && !collisionWithTile ( ( int ) ( x + bounds.x + bounds.width ) / Tile.tileWidth , ty ) )
-			{
+			if(!collisionWithTile((int) (x + bounds.x) / Tile.tileWidth, ty) &&
+				!collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.tileWidth, ty)){
 				y += yMove;
-			} else
-			{
-				y = ty * Tile.tileHeight * Tile.tileHeight - bounds.y;
+			}else{
+				y = ty * Tile.tileHeight + Tile.tileHeight - bounds.y;
 			}
 			
-		} else if ( yMove > 0 )
-		{//Down
-			int ty = ( int ) ( y + yMove + bounds.y + bounds.height ) / Tile.tileHeight;
+		}else if(yMove > 0){//Down
+			int ty = (int) (y + yMove + bounds.y + bounds.height) / Tile.tileHeight;
 			
-			if ( !collisionWithTile ( ( int ) ( x + bounds.x ) / Tile.tileWidth , ty ) && !collisionWithTile ( ( int ) ( x + bounds.x + bounds.width ) / Tile.tileWidth , ty ) )
-			{
+			if(!collisionWithTile((int) (x + bounds.x) / Tile.tileWidth, ty) &&
+				!collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.tileWidth, ty)){
 				y += yMove;
-			} else
-			{
+			}else{
 				y = ty * Tile.tileHeight - bounds.y - bounds.height - 1;
 			}
+			
 		}
 	}
 	
