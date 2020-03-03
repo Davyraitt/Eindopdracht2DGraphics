@@ -21,9 +21,12 @@ public class Assets {
 	public static BufferedImage treetile3;
 	public static BufferedImage treetile4;
 	
+	public static BufferedImage portalTile;
+	
 	public static SpriteSheet sheet;
 	public static SpriteSheet sheet2;
 	public static SpriteSheet sheet3;
+	public static SpriteSheet sheet4;
 	
 	public static ArrayList < BufferedImage > playerDown;
 	public static ArrayList < BufferedImage > playerUp;
@@ -52,6 +55,7 @@ public class Assets {
            // containing player walk animation
 		sheet3 = new SpriteSheet ( ImageLoader.loadImage ( "/textures/trees.png" ) ); // sheet containing player
            // walk animation
+		sheet4 = new SpriteSheet ( ImageLoader.loadImage ( "/textures/groundtiles.jpg" ) );
 		
 		playerDown.add ( 0 , sheet2.crop ( 0 , 0 , widthx2 , heightx2 ) );
 		playerDown.add ( 1 , sheet2.crop ( widthx2 , 0 , widthx2 , heightx2 ) );
@@ -77,6 +81,9 @@ public class Assets {
 		treetile2 = sheet3.crop ( 32 , 0 , width , height );
 		treetile3 = sheet3.crop ( 64 , 0 , width , height );
 		treetile4 = sheet3.crop ( 96 , 0 , width , height );
+		
+		portalTile = sheet4.crop (  32 , 32, width, height);
+		
 		
 		lavatile = sheet.crop ( 0 , 0 , width , height );
 		grasstile = sheet.crop ( width , 0 , width , height );

@@ -1,6 +1,7 @@
 package States;
 
 import Entity.Player;
+import Entity.Statics.Portal;
 import Entity.Statics.Tree;
 import Game.Game;
 import Game.Handler;
@@ -25,7 +26,7 @@ public class GameState extends State {
 	@Override
 	public void draw ( FXGraphics2D graphics ) {
 		world.draw ( graphics );
-		
+	
 		
 	}
 	

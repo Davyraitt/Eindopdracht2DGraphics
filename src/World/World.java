@@ -2,6 +2,7 @@ package World;
 
 import Entity.EntityManager;
 import Entity.Player;
+import Entity.Statics.Portal;
 import Entity.Statics.Tree;
 import Game.Game;
 import Tiles.Tile;
@@ -34,6 +35,7 @@ public class World {
               entityManager.addEntity ( new Tree (handler, 100, 200) );
               entityManager.addEntity ( new Tree (handler, 100, 300) );
               entityManager.addEntity ( new Tree (handler, 100, 400) );
+              entityManager.addEntity ( new Portal (handler, 32, 32) );
            
               
               
