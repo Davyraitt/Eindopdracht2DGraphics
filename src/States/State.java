@@ -30,6 +30,10 @@ public abstract class State {
 	public abstract void update ( double deltaTime );
 	
 	public abstract void moveUp ( );
+
+	public abstract void setCurrentLevel ( int newLevel);
+
+	public abstract int getCurrentLevel ();
 	
 	public abstract void moveDown ( );
 	

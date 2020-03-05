@@ -30,7 +30,7 @@ public class Tile {
 		
 	}
 	
-	public void tick ( ) {
+	public void update( ) {
 	}
 	
 	public void draw ( Graphics g , int x , int y ) {

@@ -23,7 +23,17 @@ public class SettingsState extends State {
 	public void moveUp ( ) {
 	
 	}
-	
+
+	@Override
+	public void setCurrentLevel(int newLevel) {
+
+	}
+
+	@Override
+	public int getCurrentLevel() {
+		return 0;
+	}
+
 	@Override
 	public void moveDown ( ) {
 	
