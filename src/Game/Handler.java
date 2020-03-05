@@ -1,6 +1,5 @@
 package Game;
 
-import Input.KeyManager;
 import World.World;
 
 public class Handler {
@@ -21,6 +20,7 @@ public class Handler {
 	}
 	
 	public int getHeight ( ) {
+		
 		return game.getHeight (); // getter for the height of the game, gets the height from the main game method getter
 	}
 	
@@ -28,6 +28,21 @@ public class Handler {
 		return game.getGameCamera (); // getter for the camera of the game, gets the camera from the main game method getter
 	}
 	
+	public boolean isLeftPressed ( ) {
+		return game.isLeftPressed ();
+	}
+	
+	public boolean isRigthPressed ( ) {
+		return game.isRigthPressed ();
+	}
+	
+	public double getMouseX ( ) {
+		return game.getMouseX ();
+	}
+	
+	public double getMouseY ( ) {
+		return game.getMouseY ();
+	}
 	
 	
 	

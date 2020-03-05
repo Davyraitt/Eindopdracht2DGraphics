@@ -10,6 +10,7 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -56,6 +57,20 @@ public class Game extends Application {
 	//Handler
 	private Handler handler;
 	
+	//mousestates
+	boolean leftPressed;
+	boolean rigthPressed;
+	int mouseX;
+	int mouseY;
+	
+	//GUI
+	
+	public Game ( ) {
+	
+	}
+	
+
+	
 	public static void main ( String[] args ) {
 		launch ( Game.class ); //launches the main game
 	}
@@ -74,6 +89,10 @@ public class Game extends Application {
 		canvas.setOnScroll ( this::mouseScrolled ); // mouseScrolled method is called when the user scrolls
 		canvas.setOnKeyPressed ( this::keyPressed ); // keyPressed method is called when the user presses a key
 		canvas.setOnKeyReleased ( this::keyReleased ); // keyPressed method is called when the user presses a key
+		canvas.setOnMouseMoved ( this::mouseMoved ); //
+		canvas.setOnMouseDragged ( this::mouseDragged ); //
+		canvas.setOnMousePressed ( this::mousePressed ); //
+		canvas.setOnMouseReleased ( this::mouseReleased ); //
 		mainPane.setCenter ( canvas );
 		FXGraphics2D g2d = new FXGraphics2D ( canvas.getGraphicsContext2D ( ) );
 		init ( );
@@ -113,6 +132,40 @@ public class Game extends Application {
 		stage.setScene ( new Scene ( mainPane , width , height ) );
 		stage.setTitle ( gameTitle );
 		stage.show ( );
+		
+	}
+	
+	private void mousePressed ( MouseEvent e ) {
+		
+		if ( e.isPrimaryButtonDown ( ) )
+		{
+			leftPressed = true;
+		} else if ( e.isSecondaryButtonDown ( ) )
+		{
+			rigthPressed = true;
+		}
+	}
+	
+	private void mouseReleased ( MouseEvent e ) {
+		
+		if ( e.isPrimaryButtonDown ( ) )
+		{
+			leftPressed = false;
+		} else if ( e.isSecondaryButtonDown ( ) )
+		{
+			rigthPressed = false;
+		}
+		
+		
+		
+	}
+	
+	private void mouseDragged ( MouseEvent e ) {
+	}
+	
+	private void mouseMoved ( MouseEvent e ) {
+		mouseX = (int)e.getX ( );
+		mouseY = (int)e.getY ( );
 		
 	}
 	
@@ -200,8 +253,7 @@ public class Game extends Application {
 		menuState = new MenuState ( handler ); // we pass in this, because it takes a game object (this class)
 		settingState = new SettingsState ( handler ); // we pass in this, because it takes a game object (this
 		// class)
-		
-		State.setState ( gameState );
+		State.setState ( menuState );
 		
 	}
 	
@@ -236,6 +288,34 @@ public class Game extends Application {
 		
 	}
 	
+	public boolean isLeftPressed ( ) {
+		return leftPressed;
+	}
+	
+	public boolean isRigthPressed ( ) {
+		return rigthPressed;
+	}
+	
+	public double getMouseX ( ) {
+		return mouseX;
+	}
+	
+	public double getMouseY ( ) {
+		return mouseY;
+	}
+	
+	public State getMenuState ( ) {
+		return menuState;
+	}
+	
+	public State getSettingState ( ) {
+		return settingState;
+	}
+	
+	public State getGameState ( ) {
+		return gameState;
+	}
+	
 	public ResizableCanvas getCanvas ( ) {
 		return canvas;
 	}
@@ -251,4 +331,5 @@ public class Game extends Application {
 	public int getHeight ( ) {
 		return this.height;
 	}
+	
 }

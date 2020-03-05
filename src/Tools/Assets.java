@@ -33,6 +33,8 @@ public class Assets {
 	public static ArrayList < BufferedImage > playerLeft;
 	public static ArrayList < BufferedImage > playerRight;
 	
+	public static ArrayList < BufferedImage > button_start;
+	
 	private static final int width = 32;
 	private static final int height = 32;
 	
@@ -48,6 +50,8 @@ public class Assets {
 		playerUp = new ArrayList <> ( );
 		playerLeft = new ArrayList <> ( );
 		playerRight = new ArrayList <> ( );
+		button_start = new ArrayList <> ( );
+		
 		
 		sheet = new SpriteSheet ( ImageLoader.loadImage ( "/textures/groundtiles.png" ) ); // sheet containing
            // all the ground tiles
@@ -76,6 +80,9 @@ public class Assets {
 		playerUp.add ( 1 , sheet2.crop ( widthx2 , 64 * 3 , widthx2 , heightx2 ) );
 		playerUp.add ( 2 , sheet2.crop ( widthx2 * 2 , 64 * 3 , widthx2 , heightx2 ) );
 		playerUp.add ( 3 , sheet2.crop ( widthx2 * 3 , 64 * 3 , widthx2 , heightx2 ) );
+		
+		button_start.add ( 0, sheet4.crop ( 64, 64, 64, 32 ));
+		button_start.add ( 1, sheet4.crop ( 64, 96, 64, 32 ));
 		
 		treetile1 = sheet3.crop ( 0 , 0 , width , height );
 		treetile2 = sheet3.crop ( 32 , 0 , width , height );
