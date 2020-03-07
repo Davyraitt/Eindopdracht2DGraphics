@@ -2,9 +2,7 @@ package Entity;
 
 // Entity class, all Entities (non tiles) extend this class.
 
-import Game.Game;
 import Game.Handler;
-import org.jfree.fx.ResizableCanvas;
 
 import java.awt.*;
 
@@ -27,7 +25,7 @@ public abstract class Entity {
 	public boolean checkEntityCollisions ( float xOffset , float yOffset ) {
 		int seccounter = 0;
 		
-		for ( Entity e : handler.getWorld ( ).getEntityManager ( ).getEntities ( ) )
+		for ( Entity e : handler.getWorld ( ).getEntityManagerLevel1 ( ).getEntities ( ) )
 		{
 			if ( e.equals ( this ) ) {
 				continue; }

@@ -4,11 +4,12 @@ import Entity.EntityManager;
 import Entity.Player;
 import Entity.Statics.PortalLevel1;
 import Entity.Statics.PortalLevel2;
-import Entity.Statics.Tree;
+import Entity.Statics.Trees.Tree;
 import Tiles.Tile;
 import Tools.Utils;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 import Game.Handler;
 
@@ -21,34 +22,59 @@ public class World {
     private Handler handler;
 
     private int[][] tiles;
-
-
+    private int currentLevel;
+    
+    
     //Entities
-    private EntityManager entityManager;
+    private EntityManager entityManagerLevel1;
+    private EntityManager entityManagerLevel2;
+    private EntityManager entityManagerLevel3;
+    private EntityManager entityManagerLevel4;
+    private EntityManager entityManagerLevel5;
+    private EntityManager entityManagerLevel6;
+    
+    private ArrayList < EntityManager > entityManagers;
+    
 
     public World(Handler handler, String path) {
         this.handler = handler;
 
+        entityManagers = new ArrayList < EntityManager > (  );
+        
         //creating the entity manager
-        entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+        entityManagerLevel1 = new EntityManager(handler, new Player(handler, 100, 100));
+        entityManagerLevel2 = new EntityManager(handler, new Player(handler, 100, 100));
+        entityManagerLevel3 = new EntityManager(handler, new Player(handler, 100, 100));
+        entityManagerLevel4 = new EntityManager(handler, new Player(handler, 100, 100));
+        entityManagerLevel5 = new EntityManager(handler, new Player(handler, 100, 100));
+        entityManagerLevel6 = new EntityManager(handler, new Player(handler, 100, 100));
+    
+        entityManagers.add ( entityManagerLevel1 );
+        entityManagers.add ( entityManagerLevel2 );
+        entityManagers.add ( entityManagerLevel3 );
+        entityManagers.add ( entityManagerLevel4 );
+        entityManagers.add ( entityManagerLevel5 );
+        entityManagers.add ( entityManagerLevel6 );
 
         // add the static entities here
-        entityManager.addEntity(new Tree(handler, 100, 200));
-        entityManager.addEntity(new Tree(handler, 100, 300));
-        entityManager.addEntity(new Tree(handler, 100, 400));
-        entityManager.addEntity(new PortalLevel1 (handler, 32, 32, 32, 32));
-        entityManager.addEntity(new PortalLevel2 (handler, 96, 32, 32, 32));
+        entityManagerLevel2.addEntity(new Tree(handler, 100, 200));
+        entityManagerLevel2.addEntity(new Tree(handler, 100, 300));
+        entityManagerLevel2.addEntity(new Tree(handler, 100, 400));
+        entityManagerLevel1.addEntity(new PortalLevel1 (handler, 32, 32, 32, 32));
+        entityManagerLevel1.addEntity(new PortalLevel2 (handler, 96, 32, 32, 32));
 
 
         loadWorld(path);
-
-        entityManager.getPlayer().setX(spawnX);
-        entityManager.getPlayer().setY(spawnY);
+    
+        
+        
+        entityManagerLevel1.getPlayer().setX(spawnX);
+        entityManagerLevel1.getPlayer().setY(spawnY);
 
     }
 
     public void update() {
-        entityManager.update();
+        entityManagerLevel1.update();
     }
 
     public void draw(Graphics g) {
@@ -61,7 +87,7 @@ public class World {
             }
         }
 
-        entityManager.draw(g);
+        entityManagerLevel1.draw(g);
 
     }
 
@@ -105,46 +131,46 @@ public class World {
 
 
     public void moveUp() {
-        entityManager.getPlayer().moveUp();
-        entityManager.getPlayer().moveUp();
+        entityManagerLevel1.getPlayer().moveUp();
+        entityManagerLevel1.getPlayer().moveUp();
     }
 
-    public EntityManager getEntityManager() {
-        return entityManager;
+    public EntityManager getEntityManagerLevel1 () {
+        return entityManagerLevel1;
     }
 
 
     public void moveDown() {
-        entityManager.getPlayer().moveDown();
+        entityManagerLevel1.getPlayer().moveDown();
     }
 
 
     public void moveRight() {
-        entityManager.getPlayer().moveRight();
+        entityManagerLevel1.getPlayer().moveRight();
     }
 
 
     public void moveLeft() {
-        entityManager.getPlayer().moveLeft();
+        entityManagerLevel1.getPlayer().moveLeft();
     }
 
 
     public void moveUpReleased() {
-        entityManager.getPlayer().moveUpReleased();
+        entityManagerLevel1.getPlayer().moveUpReleased();
     }
 
 
     public void moveDownReleased() {
-        entityManager.getPlayer().moveDownReleased();
+        entityManagerLevel1.getPlayer().moveDownReleased();
     }
 
 
     public void moveRightReleased() {
-        entityManager.getPlayer().moveRightReleased();
+        entityManagerLevel1.getPlayer().moveRightReleased();
     }
 
 
     public void moveLeftReleased() {
-        entityManager.getPlayer().moveLeftReleased();
+        entityManagerLevel1.getPlayer().moveLeftReleased();
     }
 }

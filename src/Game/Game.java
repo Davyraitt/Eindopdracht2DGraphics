@@ -251,7 +251,7 @@ public class Game extends Application {
 		settingState = new SettingsState ( handler ); // we pass in this, because it takes a game object (this
 		// class)
 		loadingState = new LoadingState ( handler );
-		State.setState ( menuState );
+		State.setState ( gameState );
 		
 	}
 	

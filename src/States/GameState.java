@@ -1,7 +1,5 @@
 package States;
 
-import Entity.Player;
-import Entity.Statics.Tree;
 import Game.Handler;
 import World.World;
 import org.jfree.fx.FXGraphics2D;
