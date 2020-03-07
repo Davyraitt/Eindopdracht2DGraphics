@@ -50,6 +50,16 @@ public class World {
 		entityManagerLevel5 = new EntityManager ( handler , new Player ( handler , 100 , 100 ) );
 		entityManagerLevel6 = new EntityManager ( handler , new Player ( handler , 100 , 100 ) );
 		
+		// add the static entities here
+		entityManagerLevel1.addEntity ( new Tree ( handler , 120 , 120 ) );
+		entityManagerLevel1.addEntity ( new Tree ( handler , 150 , 300 ) );
+		entityManagerLevel1.addEntity ( new Tree ( handler , 150 , 400 ) );
+		
+		entityManagerLevel3.addEntity ( new Tree ( handler , 150 , 100 ) );
+		entityManagerLevel3.addEntity ( new Tree2 ( handler , 150 , 150 ) );
+		entityManagerLevel3.addEntity ( new Tree3 ( handler , 150 , 200 ) );
+		entityManagerLevel3.addEntity ( new Tree4 ( handler , 150 , 250 ) );
+		
 		entityManagers.add ( entityManagerLevel1 );
 		entityManagers.add ( entityManagerLevel2 );
 		entityManagers.add ( entityManagerLevel3 );
@@ -57,15 +67,7 @@ public class World {
 		entityManagers.add ( entityManagerLevel5 );
 		entityManagers.add ( entityManagerLevel6 );
 		
-		// add the static entities here
-		entityManagerLevel2.addEntity ( new Tree ( handler , 150 , 100 ) );
-		entityManagerLevel2.addEntity ( new Tree ( handler , 150 , 300 ) );
-		entityManagerLevel2.addEntity ( new Tree ( handler , 150 , 400 ) );
 		
-		entityManagerLevel3.addEntity ( new Tree ( handler , 150 , 100 ) );
-		entityManagerLevel3.addEntity ( new Tree2 ( handler , 150 , 150 ) );
-		entityManagerLevel3.addEntity ( new Tree3 ( handler , 150 , 200 ) );
-		entityManagerLevel3.addEntity ( new Tree4 ( handler , 150 , 250 ) );
 		
 		for ( EntityManager entityManager : entityManagers )
 		{
@@ -75,21 +77,25 @@ public class World {
 		
 		loadWorld ( path );
 		
-		switch ( currentLevel )
-		{
-			case 1:
+		
+		
+		
+		
+//		switch ( currentLevel )
+//		{
+//			case 1:
 				entityManagerLevel1.getPlayer ( ).setX ( spawnX );
 				entityManagerLevel1.getPlayer ( ).setY ( spawnY );
-				break;
-			case 2:
+//				break;
+//			case 2:
 				entityManagerLevel2.getPlayer ( ).setX ( spawnX );
 				entityManagerLevel2.getPlayer ( ).setY ( spawnY );
-				break;
-			case 3:
+//				break;
+//			case 3:
 				entityManagerLevel3.getPlayer ( ).setX ( spawnX );
 				entityManagerLevel3.getPlayer ( ).setY ( spawnY );
-				break;
-		}
+//				break;
+//		}
 		
 	}
 	
