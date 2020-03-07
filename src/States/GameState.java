@@ -26,14 +26,17 @@ public class GameState extends State {
 		switch ( currentLevel )
 		{
 			case 1:
+				handler.getWorld ( ).setCurrentLevel ( 1 );
 				handler.setWorld ( world2 );
 				world.draw ( graphics );
 				break;
 			case 2:
+				handler.getWorld ( ).setCurrentLevel ( 2 );
 				handler.setWorld ( world2 );
 				world2.draw ( graphics );
 				break;
 			case 3:
+				handler.getWorld ( ).setCurrentLevel ( 3 );
 				handler.setWorld ( world3 );
 				world3.draw ( graphics );
 				break;

@@ -8,6 +8,7 @@ public class Handler {
 	
 	private Game game;
 	private World world;
+	private int Currentlevel;
 	
 	public Handler ( Game game ) {
 		this.game = game;
@@ -15,6 +16,12 @@ public class Handler {
 	
 	public void setLevel ( int level ) {
 		game.getGameState ( ).setCurrentLevel ( level );
+		world.setCurrentLevel ( level );
+		this.Currentlevel = level;
+	}
+	
+	public int getCurrentlevel ( ) {
+		return Currentlevel;
 	}
 	
 	public int getLevel ( ) {

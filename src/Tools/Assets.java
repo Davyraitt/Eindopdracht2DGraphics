@@ -110,9 +110,9 @@ public class Assets {
 		playerUp.add ( 3 , sheet2.crop ( widthx2 * 3 , 64 * 3 , widthx2 , heightx2 ) );
 		
 		treetile1 = sheet3.crop ( 0 , 0 , width , height );
-		treetile2 = sheet3.crop ( 32 , 0 , width , height );
-		treetile3 = sheet3.crop ( 64 , 0 , width , height );
-		treetile4 = sheet3.crop ( 96 , 0 , width , height );
+		treetile2 = sheet3.crop ( 33 , 0 , width , height );
+		treetile3 = sheet3.crop ( 65 , 0 , width , height );
+		treetile4 = sheet3.crop ( 97 , 0 , width  -1, height );
 		
 		portalTile = sheet4.crop ( 32 , 32 , width , height );
 		loadingScreen = sheet8.crop ( 0 , 0 , 400 , 400 );

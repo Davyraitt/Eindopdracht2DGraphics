@@ -12,6 +12,7 @@ public abstract class Entity {
 	protected float x, y;
 	protected int width, height;
 	protected Rectangle bounds;
+	private int currentlevel;
 	
 	public Entity ( Handler handler , float x , float y , int width , int height ) {
 		this.handler = handler;
@@ -23,15 +24,60 @@ public abstract class Entity {
 	}
 	
 	public boolean checkEntityCollisions ( float xOffset , float yOffset ) {
-		int seccounter = 0;
 		
-		for ( Entity e : handler.getWorld ( ).getEntityManagerLevel1 ( ).getEntities ( ) )
+		handler.getWorld ( ).getEntityManagers ( );
+		
+		if ( handler.getLevel ( ) == 1 )
 		{
-			if ( e.equals ( this ) ) {
-				continue; }
-			if ( e.getCollisionBounds ( 0f , 0f ).intersects ( getCollisionBounds ( xOffset , yOffset ) ) ) {
-				return true; }
+			for ( Entity e : handler.getWorld ( ).getEntityManagerLevel1 ( ).getEntities ( ) )
+			{
+				if ( e.equals ( this ) )
+				{
+					continue;
+				}
+				if ( e.getCollisionBounds ( 0f , 0f ).intersects ( getCollisionBounds ( xOffset ,
+					yOffset ) ) )
+				{
+					return true;
+				}
+			}
+			return false;
 		}
+		
+		if ( handler.getLevel ( ) == 2 )
+		{
+			for ( Entity e : handler.getWorld ( ).getEntityManagerLevel2 ( ).getEntities ( ) )
+			{
+				if ( e.equals ( this ) )
+				{
+					continue;
+				}
+				if ( e.getCollisionBounds ( 0f , 0f ).intersects ( getCollisionBounds ( xOffset ,
+					yOffset ) ) )
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+		
+		if ( handler.getLevel ( ) == 3 )
+		{
+			for ( Entity e : handler.getWorld ( ).getEntityManagerLevel3 ( ).getEntities ( ) )
+			{
+				if ( e.equals ( this ) )
+				{
+					continue;
+				}
+				if ( e.getCollisionBounds ( 0f , 0f ).intersects ( getCollisionBounds ( xOffset ,
+					yOffset ) ) )
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+		
 		return false;
 	}
 	
