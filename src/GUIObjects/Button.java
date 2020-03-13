@@ -3,6 +3,14 @@ package GUIObjects;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
+/**
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
+ */
+
+
 public abstract class Button {
     private int x;
     private int y;

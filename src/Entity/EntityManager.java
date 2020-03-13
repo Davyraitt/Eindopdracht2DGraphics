@@ -6,6 +6,14 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/**
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
+ */
+
+
 public class EntityManager {
 	
 	private Handler handler;
@@ -32,6 +40,7 @@ public class EntityManager {
 		{
 			Entity e = entities.get ( i );
 			e.update ( );
+			if (!e.active) {entities.remove ( e );}
 		}
 		entities.sort ( renderSorter );
 		

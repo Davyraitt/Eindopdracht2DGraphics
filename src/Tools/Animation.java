@@ -3,6 +3,14 @@ package Tools;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+/**
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
+ */
+
+
 public class Animation {
 	
 	private int speed;

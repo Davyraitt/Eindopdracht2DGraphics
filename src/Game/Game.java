@@ -1,5 +1,6 @@
 package Game;
 
+import Entity.Player;
 import States.*;
 import Tools.Assets;
 import Tools.SpriteSheet;
@@ -20,6 +21,14 @@ import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
+ */
+
+
 public class Game extends Application {
 	//project data
 	private int width = 400;
@@ -38,6 +47,8 @@ public class Game extends Application {
 	private long lastTime = System.nanoTime ( ); // gets current computertime in nanoseconds
 	private long timer = 0; // time until we hit 1s, print out how many updates and draw we did
 	private int updates = 0; // int for the fps counter
+	private int lastFPSValue = 0;
+	
 	
 	//images
 	private BufferedImage testImage; // Testimage initialiseren
@@ -116,7 +127,6 @@ public class Game extends Application {
 				
 				if ( timer >= 1000000000 )
 				{ // prints how many updates we did in the last second?
-					System.out.println ( "FPS Counter:" + updates );
 					updates = 0; // reset the variables
 					timer = 0;  // reset the variables
 					
@@ -191,7 +201,12 @@ public class Game extends Application {
 			case RIGHT:
 				gameState.moveRightReleased ( );
 				break;
+			case SHIFT:
+				gameState.setSpeed (1.0f);
+				break;
 		}
+		
+		
 	}
 	
 	private void keyPressed ( KeyEvent e ) {
@@ -224,6 +239,12 @@ public class Game extends Application {
 			case ESCAPE:
 				State.setState ( getMenuState ( ) );
 				break;
+			case SHIFT:
+				gameState.setSpeed (2.0f);
+				break;
+			case Q:
+				gameState.setSpeed (2.0f);
+				break;
 		}
 		
 	}
@@ -251,7 +272,7 @@ public class Game extends Application {
 		settingState = new SettingsState ( handler ); // we pass in this, because it takes a game object (this
 		// class)
 		loadingState = new LoadingState ( handler );
-		State.setState ( gameState );
+		State.setState ( menuState );
 		
 	}
 	
@@ -269,6 +290,15 @@ public class Game extends Application {
 		{
 			State.getState ( ).draw ( graphics );
 		}
+		
+		//FPS drawen
+		if ( timer >= 1000000000 )
+		{ // prints how many updates we did in the last second?
+			lastFPSValue = updates;
+			
+		}
+		
+		graphics.drawString ( String.valueOf ( lastFPSValue ), 382, 15 );
 		
 		// Hier stop ik het tekenen
 		graphics.dispose ( );

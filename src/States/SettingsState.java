@@ -4,6 +4,14 @@ import Game.Game;
 import Game.Handler;
 import org.jfree.fx.FXGraphics2D;
 
+/**
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
+ */
+
+
 public class SettingsState extends State {
 	public SettingsState ( Handler handler ) {
 		super ( handler );
@@ -66,6 +74,16 @@ public class SettingsState extends State {
 	
 	@Override
 	public void moveLeftReleased ( ) {
+	
+	}
+	
+	@Override
+	public void setSpeed ( float speed ) {
+	
+	}
+	
+	@Override
+	public void attack ( ) {
 	
 	}
 	

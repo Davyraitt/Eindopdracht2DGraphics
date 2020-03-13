@@ -10,8 +10,13 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
- * Created by johan on 2017-03-08.
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
  */
+
+
 public class GameObject {
 
     private Body body;

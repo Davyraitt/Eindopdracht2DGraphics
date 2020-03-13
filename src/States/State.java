@@ -4,6 +4,13 @@ import Game.Game;
 import org.jfree.fx.FXGraphics2D;
 import Game.Handler;
 
+/**
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
+ */
+
 public abstract class State {
 	
 	protected Handler handler;
@@ -22,7 +29,6 @@ public abstract class State {
 		State.currentState = state;
 	}
 	
-	
 	//MUST IMPLEMENT
 	
 	public abstract void draw ( FXGraphics2D graphics );
@@ -30,10 +36,10 @@ public abstract class State {
 	public abstract void update ( double deltaTime );
 	
 	public abstract void moveUp ( );
-
-	public abstract void setCurrentLevel ( int newLevel);
-
-	public abstract int getCurrentLevel ();
+	
+	public abstract void setCurrentLevel ( int newLevel );
+	
+	public abstract int getCurrentLevel ( );
 	
 	public abstract void moveDown ( );
 	
@@ -48,5 +54,9 @@ public abstract class State {
 	public abstract void moveRightReleased ( );
 	
 	public abstract void moveLeftReleased ( );
+	
+	public abstract void setSpeed ( float speed );
+	
+	public abstract void attack ( );
 	
 }

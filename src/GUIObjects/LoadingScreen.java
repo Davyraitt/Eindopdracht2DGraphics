@@ -5,6 +5,14 @@ import Tools.Assets;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
+ */
+
+
 public class LoadingScreen {
     private int x;
     private int y;

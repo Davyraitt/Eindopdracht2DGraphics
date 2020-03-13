@@ -3,6 +3,14 @@ package Game;
 import Entity.Entity;
 import Tiles.Tile;
 
+/**
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
+ */
+
+
 public class GameCamera {
 	
 	private float xOffset;

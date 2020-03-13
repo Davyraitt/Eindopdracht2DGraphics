@@ -7,6 +7,14 @@ import Tools.Assets;
 
 import java.awt.*;
 
+
+/**
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
+ */
+
 public class Tree extends StaticEntity {
 	public Tree ( Handler handler , float x , float y ) {
 		super ( handler , x , y , Tile.tileWidth , Tile.tileHeight );
@@ -15,6 +23,11 @@ public class Tree extends StaticEntity {
 		bounds.y = 5;
 		bounds.width = 23;
 		bounds.height = 23;
+	}
+	
+	@Override
+	protected void die ( ) {
+	
 	}
 	
 	@Override

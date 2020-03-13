@@ -18,22 +18,27 @@ import java.awt.geom.Rectangle2D;
 
 public class Creature extends Entity {
 	
-	public static final int DEFAULT_HEALTH = 10; // Default health of a Creature is 10
+	 // Default health of a Creature is 10
 	public static final float DEFAULT_SPEED = 1.0f; // Default speed of a Creature is 1.0f
 	public static final int DEFAULT_CREATURE_WIDTH = 32; // Default Width of a creature is 32 px
 	public static final int DEFAULT_CREATURE_HEIGHT = 32; // Default height of a creature is 32 px
 	
-	protected int health; // this variabel will be defined in the constructor later on
+	// this variabel will be defined in the constructor later on
 	protected float speed; // this variabel will be defined in the constructor later on
 	protected float xMove, yMove; // this variabel will be defined in the constructor later on
 	
 	public Creature ( Handler handler , float x , float y , int width , int height ) { // When I create a creature,
 		// these are the variables
 		super ( handler , x , y , width , height ); // gets these variables from the super (entity)
-		health = DEFAULT_HEALTH; // health is 10 (default)
+		
 		speed = DEFAULT_SPEED; // speed is 1.0f (default)
 		xMove = 0;
 		yMove = 0;
+	}
+	
+	@Override
+	protected void die ( ) {
+	
 	}
 	
 	@Override

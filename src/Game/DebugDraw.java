@@ -15,8 +15,12 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.GeneralPath;
 
 /**
- * Created by johan on 2017-03-08.
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
  */
+
 public class DebugDraw {
 
     public static void draw(FXGraphics2D g2d, World world, double scale) {

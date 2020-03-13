@@ -12,13 +12,20 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.nio.Buffer;
 
+/**
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
+ */
+
 public class Player extends Creature {
 	
 	//Walking booleans
-	boolean moveUpPressed = false;
-	boolean moveDownPressed = false;
-	boolean moveRightPressed = false;
-	boolean moveLeftPressed = false;
+	private boolean moveUpPressed = false;
+	private boolean moveDownPressed = false;
+	private boolean moveRightPressed = false;
+	private boolean moveLeftPressed = false;
 	
 	//Animations
 	private Animation animationDown;
@@ -26,8 +33,7 @@ public class Player extends Creature {
 	private Animation animationLeft;
 	private Animation animationRight;
 	public static Rectangle2D boundsBox;
-
-
+	
 	private Handler handler;
 	
 	public Player ( Handler handler , float x , float y ) {
@@ -38,23 +44,19 @@ public class Player extends Creature {
 		bounds.y = 16;
 		bounds.width = 16;
 		bounds.height = 16;
-
-
-
+		
 		animationDown = new Animation ( 300 , Assets.playerDown );
 		animationUp = new Animation ( 300 , Assets.playerUp );
 		animationLeft = new Animation ( 300 , Assets.playerLeft );
 		animationRight = new Animation ( 300 , Assets.playerRight );
 		
 	}
-
-
-
+	
 	@Override
 	public void update ( ) {
-		boundsBox = new Rectangle2D.Double(( int ) ( x - handler.getGameCamera ( ).getxOffset ( ) ) ,
-				( int ) ( y - handler.getGameCamera ( ).getyOffset ( ) ) , width , height);
-
+		boundsBox = new Rectangle2D.Double ( ( int ) ( x - handler.getGameCamera ( ).getxOffset ( ) ) ,
+			( int ) ( y - handler.getGameCamera ( ).getyOffset ( ) ) , width , height );
+		
 		animationDown.update ( );
 		animationUp.update ( );
 		animationLeft.update ( );
@@ -63,6 +65,22 @@ public class Player extends Creature {
 		move ( );
 		handler.getGameCamera ( ).centerOnEntity ( this );
 		
+		//Attack
+		checkAttacks ( );
+		
+	}
+	
+	private void checkAttacks ( ) {
+		int attackRangeSize = 20;
+		Rectangle2D collisionBounds =
+			new Rectangle2D.Double ( ( int ) ( x - handler.getGameCamera ( ).getxOffset ( ) ) ,
+				( int ) ( y - handler.getGameCamera ( ).getyOffset ( ) ) , width , height );
+		Rectangle2D attackRange = new Rectangle2D.Double ( 0 , 0 , attackRangeSize , attackRangeSize );
+		
+	}
+	
+	protected void die ( ) {
+		System.out.println ( "Oh dear, you are dead!" );
 	}
 	
 	private void getInput ( ) {
@@ -96,16 +114,18 @@ public class Player extends Creature {
 	public void draw ( Graphics g ) {
 		g.drawImage ( getCurrentAnimationFrame ( ) , ( int ) ( x - handler.getGameCamera ( ).getxOffset ( ) ) ,
 			( int ) ( y - handler.getGameCamera ( ).getyOffset ( ) ) , width , height , null );
-
-		//g.drawRect((int)boundsBox.getX(), (int)boundsBox.getY(), (int)boundsBox.getWidth(), (int)boundsBox.getHeight()); draws the boundbox
-
-
+		
+		//g.drawRect((int)boundsBox.getX(), (int)boundsBox.getY(), (int)boundsBox.getWidth(), (int)boundsBox
+		// .getHeight()); draws the boundbox
+		
 		//boundsbox
-
-//				g.setColor ( Color.red ); // shows the bound box
-//				g.fillRect ( ( int ) ( x + bounds.x - handler.getGameCamera ( ).getxOffset ( ) ) ,
-//					( int ) ( y + bounds.y - handler.getGameCamera ( ).getyOffset ( ) ) , bounds.width ,
-//					bounds.height );
+		
+		//				g.setColor ( Color.red ); // shows the bound box
+		//				g.fillRect ( ( int ) ( x + bounds.x - handler.getGameCamera ( ).getxOffset (
+		//				) ) ,
+		//					( int ) ( y + bounds.y - handler.getGameCamera ( ).getyOffset ( ) ) ,
+		//					bounds.width ,
+		//					bounds.height );
 		// uncomment above to see the bounds box
 		// fills the bound box
 	}
@@ -187,9 +207,12 @@ public class Player extends Creature {
 		
 		moveRightPressed = false;
 	}
-
-	public Rectangle2D getBoundsBox() {
-		return boundsBox;
+	
+	public void setSpeed ( float newSpeed ) {
+		speed = newSpeed;
 	}
-
+	
+	public void attack ( ) {
+		System.out.println ( "attacking..." );
+	}
 }

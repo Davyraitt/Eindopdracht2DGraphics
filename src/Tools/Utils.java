@@ -2,6 +2,14 @@ package Tools;
 
 import java.io.*;
 
+/**
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
+ */
+
+
 public class Utils {
 	
 	public static String loadFileAsString(String path){

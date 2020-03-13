@@ -9,6 +9,14 @@ import org.jfree.fx.FXGraphics2D;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
+/**
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
+ */
+
+
 public class MenuState extends State {
 
     private MenuButton menuButton;
@@ -107,5 +115,15 @@ public class MenuState extends State {
     public void moveLeftReleased() {
 
     }
-
+    
+    @Override
+    public void setSpeed ( float speed ) {
+    
+    }
+    
+    @Override
+    public void attack ( ) {
+    
+    }
+    
 }

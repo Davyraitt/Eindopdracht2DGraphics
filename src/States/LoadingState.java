@@ -5,6 +5,14 @@ import Game.Handler;
 import Tools.Assets;
 import org.jfree.fx.FXGraphics2D;
 
+/**
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
+ */
+
+
 public class LoadingState extends State {
 	private int counter = 0;
 	
@@ -71,6 +79,16 @@ public class LoadingState extends State {
 	
 	@Override
 	public void moveLeftReleased ( ) {
+	
+	}
+	
+	@Override
+	public void setSpeed ( float speed ) {
+	
+	}
+	
+	@Override
+	public void attack ( ) {
 	
 	}
 }

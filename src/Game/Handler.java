@@ -2,6 +2,14 @@ package Game;
 
 import World.World;
 
+/**
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
+ */
+
+
 public class Handler {
 	
 	// The handler class is a simple class that allows us to pass along a bunch of variables when we want to.
@@ -18,6 +26,10 @@ public class Handler {
 		game.getGameState ( ).setCurrentLevel ( level );
 		world.setCurrentLevel ( level );
 		this.Currentlevel = level;
+	}
+	
+	public void setSpeed ( int level ) {
+	
 	}
 	
 	public int getCurrentlevel ( ) {

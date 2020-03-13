@@ -7,6 +7,14 @@ package Tools;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+/**
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
+ */
+
+
 public class Assets {
 	
 	public static BufferedImage watertile;
@@ -44,11 +52,17 @@ public class Assets {
 	private static SpriteSheet sheet7;
 	private static SpriteSheet sheet8;
 	private static SpriteSheet sheet9;
+	private static SpriteSheet sheet10;
 	
 	public static ArrayList < BufferedImage > playerDown;
 	public static ArrayList < BufferedImage > playerUp;
 	public static ArrayList < BufferedImage > playerLeft;
 	public static ArrayList < BufferedImage > playerRight;
+	
+	public static ArrayList < BufferedImage > monsterDown;
+	public static ArrayList < BufferedImage > monsterUp;
+	public static ArrayList < BufferedImage > monsterLeft;
+	public static ArrayList < BufferedImage > monsterRight;
 	
 	private static final int width = 32;
 	private static final int height = 32;
@@ -65,6 +79,8 @@ public class Assets {
 		playerUp = new ArrayList <> ( );
 		playerLeft = new ArrayList <> ( );
 		playerRight = new ArrayList <> ( );
+		
+		monsterDown = new ArrayList <> ( );
 		
 		sheet = new SpriteSheet ( ImageLoader.loadImage ( "/textures/groundtiles.png" ) ); // sheet containing
 		// all the ground tiles
@@ -88,6 +104,14 @@ public class Assets {
 		
 		sheet9 = new SpriteSheet ( ImageLoader.loadImage ( "/textures/leveltiles.png" ) ); // contains the
 		// loadingscreen
+		
+		sheet10 = new SpriteSheet ( ImageLoader.loadImage ( "/Textures/monstersprite.png" ) ); // contains the
+		// loadingscreen
+		
+		monsterDown.add ( 0, sheet10.crop ( 0, 0, width, height ));
+		monsterDown.add ( 1, sheet10.crop ( 32, 0, width, height ));
+		monsterDown.add (2 , sheet10.crop ( 64, 0, width, height ));
+		
 		
 		playerDown.add ( 0 , sheet2.crop ( 0 , 0 , widthx2 , heightx2 ) );
 		playerDown.add ( 1 , sheet2.crop ( widthx2 , 0 , widthx2 , heightx2 ) );

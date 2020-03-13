@@ -2,8 +2,10 @@ package World;
 
 import Entity.EntityManager;
 import Entity.Player;
-import Entity.Statics.PortalLevel1;
-import Entity.Statics.PortalLevel2;
+import Entity.Portals.PortalLevel3;
+import Entity.Statics.Monsters.Alien;
+import Entity.Portals.PortalLevel1;
+import Entity.Portals.PortalLevel2;
 import Entity.Statics.Trees.Tree;
 import Entity.Statics.Trees.Tree2;
 import Entity.Statics.Trees.Tree3;
@@ -13,6 +15,14 @@ import Tools.Utils;
 
 import java.awt.*;
 import java.util.ArrayList;
+
+/**
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
+ */
+
 
 import Game.Handler;
 
@@ -35,12 +45,17 @@ public class World {
 	private EntityManager entityManagerLevel5;
 	private EntityManager entityManagerLevel6;
 	
+	
+	
 	private ArrayList < EntityManager > entityManagers;
 	
 	public World ( Handler handler , String path ) {
 		this.handler = handler;
 		
 		entityManagers = new ArrayList < EntityManager > ( );
+		
+		
+		
 		
 		//creating the entity manager
 		entityManagerLevel1 = new EntityManager ( handler , new Player ( handler , 100 , 100 ) );
@@ -55,10 +70,12 @@ public class World {
 		entityManagerLevel1.addEntity ( new Tree ( handler , 150 , 300 ) );
 		entityManagerLevel1.addEntity ( new Tree ( handler , 150 , 400 ) );
 		
-		entityManagerLevel3.addEntity ( new Tree ( handler , 150 , 100 ) );
+		entityManagerLevel3.addEntity ( new Tree ( handler , 200 , 100 ) );
 		entityManagerLevel3.addEntity ( new Tree2 ( handler , 150 , 150 ) );
 		entityManagerLevel3.addEntity ( new Tree3 ( handler , 150 , 200 ) );
 		entityManagerLevel3.addEntity ( new Tree4 ( handler , 150 , 250 ) );
+		
+		entityManagerLevel3.addEntity ( new Alien ( handler , 50 , 100 ) );
 		
 		entityManagers.add ( entityManagerLevel1 );
 		entityManagers.add ( entityManagerLevel2 );
@@ -67,35 +84,26 @@ public class World {
 		entityManagers.add ( entityManagerLevel5 );
 		entityManagers.add ( entityManagerLevel6 );
 		
-		
-		
 		for ( EntityManager entityManager : entityManagers )
 		{
 			entityManager.addEntity ( new PortalLevel1 ( handler , 32 , 32 , 32 , 32 ) );
 			entityManager.addEntity ( new PortalLevel2 ( handler , 96 , 32 , 32 , 32 ) );
+			entityManager.addEntity ( new PortalLevel3 ( handler , 160 , 32 , 32 , 32 ) );
 		}
 		
 		loadWorld ( path );
 		
+		entityManagerLevel1.getPlayer ( ).setX ( spawnX );
+		entityManagerLevel1.getPlayer ( ).setY ( spawnY );
 		
+		entityManagerLevel2.getPlayer ( ).setX ( spawnX );
+		entityManagerLevel2.getPlayer ( ).setY ( spawnY );
 		
+		entityManagerLevel3.getPlayer ( ).setX ( spawnX );
+		entityManagerLevel3.getPlayer ( ).setY ( spawnY );
 		
-		
-//		switch ( currentLevel )
-//		{
-//			case 1:
-				entityManagerLevel1.getPlayer ( ).setX ( spawnX );
-				entityManagerLevel1.getPlayer ( ).setY ( spawnY );
-//				break;
-//			case 2:
-				entityManagerLevel2.getPlayer ( ).setX ( spawnX );
-				entityManagerLevel2.getPlayer ( ).setY ( spawnY );
-//				break;
-//			case 3:
-				entityManagerLevel3.getPlayer ( ).setX ( spawnX );
-				entityManagerLevel3.getPlayer ( ).setY ( spawnY );
-//				break;
-//		}
+		entityManagerLevel4.getPlayer ( ).setX ( spawnX );
+		entityManagerLevel4.getPlayer ( ).setY ( spawnY );
 		
 	}
 	
@@ -111,6 +119,9 @@ public class World {
 				break;
 			case 3:
 				entityManagerLevel3.update ( );
+				break;
+			case 4:
+				entityManagerLevel4.update ( );
 				break;
 		}
 		
@@ -138,6 +149,9 @@ public class World {
 				break;
 			case 3:
 				entityManagerLevel3.draw ( g );
+				break;
+			case 4:
+				entityManagerLevel4.draw ( g );
 				break;
 		}
 		
@@ -198,6 +212,9 @@ public class World {
 			case 3:
 				entityManagerLevel3.getPlayer ( ).moveUp ( );
 				break;
+			case 4:
+				entityManagerLevel4.getPlayer ( ).moveUp ( );
+				break;
 		}
 		
 	}
@@ -227,6 +244,9 @@ public class World {
 			case 3:
 				entityManagerLevel3.getPlayer ( ).moveDown ( );
 				break;
+			case 4:
+				entityManagerLevel4.getPlayer ( ).moveDown ( );
+				break;
 		}
 		
 	}
@@ -243,6 +263,9 @@ public class World {
 				break;
 			case 3:
 				entityManagerLevel3.getPlayer ( ).moveRight ( );
+				break;
+			case 4:
+				entityManagerLevel4.getPlayer ( ).moveRight ( );
 				break;
 		}
 		
@@ -261,6 +284,9 @@ public class World {
 			case 3:
 				entityManagerLevel3.getPlayer ( ).moveLeft ( );
 				break;
+			case 4:
+				entityManagerLevel4.getPlayer ( ).moveLeft ( );
+				break;
 		}
 		
 	}
@@ -277,6 +303,9 @@ public class World {
 				break;
 			case 3:
 				entityManagerLevel3.getPlayer ( ).moveUpReleased ( );
+				break;
+			case 4:
+				entityManagerLevel4.getPlayer ( ).moveUpReleased ( );
 				break;
 		}
 		
@@ -295,6 +324,9 @@ public class World {
 			case 3:
 				entityManagerLevel3.getPlayer ( ).moveDownReleased ( );
 				break;
+			case 4:
+				entityManagerLevel4.getPlayer ( ).moveDownReleased ( );
+				break;
 		}
 		
 	}
@@ -312,6 +344,9 @@ public class World {
 			case 3:
 				entityManagerLevel3.getPlayer ( ).moveRightReleased ( );
 				break;
+			case 4:
+				entityManagerLevel4.getPlayer ( ).moveRightReleased ( );
+				break;
 		}
 		
 	}
@@ -328,9 +363,53 @@ public class World {
 			case 3:
 				entityManagerLevel3.getPlayer ( ).moveLeftReleased ( );
 				break;
+			case 4:
+				entityManagerLevel4.getPlayer ( ).moveLeftReleased ( );
+				break;
 		}
 		
 	}
+	
+	
+	public void setSpeed ( float speed) {
+		switch ( currentLevel )
+		{
+			case 1:
+				entityManagerLevel1.getPlayer ( ).setSpeed (speed );
+				break;
+			case 2:
+				entityManagerLevel2.getPlayer ( ).setSpeed (speed );
+				break;
+			case 3:
+				entityManagerLevel3.getPlayer ( ).setSpeed (speed );
+				break;
+			case 4:
+				entityManagerLevel4.getPlayer ( ).setSpeed (speed );
+				break;
+		}
+		
+	}
+	
+	public void attack ( ) {
+		switch ( currentLevel )
+		{
+			case 1:
+				entityManagerLevel1.getPlayer ( ).attack ();
+				break;
+			case 2:
+				entityManagerLevel2.getPlayer ( ).attack ();
+				break;
+			case 3:
+				entityManagerLevel3.getPlayer ( ).attack ();
+				break;
+			case 4:
+				entityManagerLevel4.getPlayer ( ).attack ();
+				break;
+		}
+		
+	}
+	
+	
 	
 	public void setCurrentLevel ( int cl ) {
 		this.currentLevel = cl;

@@ -6,21 +6,33 @@ import Game.Handler;
 
 import java.awt.*;
 
+/**
+ * Creature class class
+ * This class extends Entity.
+ *
+ * @author Davy Raitt
+ */
+
+
 public abstract class Entity {
 	
 	protected Handler handler;
 	protected float x, y;
 	protected int width, height;
 	protected Rectangle bounds;
-	private int currentlevel;
+	public static final int DEFAULT_HEALTH = 10;
+	protected int health;
+	protected boolean active = true;
 	
 	public Entity ( Handler handler , float x , float y , int width , int height ) {
+		
 		this.handler = handler;
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
 		bounds = new Rectangle ( 0 , 0 , width , height );
+		health = DEFAULT_HEALTH; // health is 10 (default)
 	}
 	
 	public boolean checkEntityCollisions ( float xOffset , float yOffset ) {
@@ -86,6 +98,17 @@ public abstract class Entity {
 			bounds.width , bounds.height );
 	}
 	
+	public void hurt (int amount) {
+		health = health - amount;
+		
+		if (health <= 0) {
+			active = false;
+			die ();
+		}
+	}
+	
+	protected abstract void die ( );
+	
 	public abstract void update ( );
 	
 	public abstract void draw ( Graphics g );
@@ -136,5 +159,21 @@ public abstract class Entity {
 	
 	public void setHeight ( int height ) {
 		this.height = height;
+	}
+	
+	public int getHealth ( ) {
+		return health;
+	}
+	
+	public void setHealth ( int health ) {
+		this.health = health;
+	}
+	
+	public boolean isActive ( ) {
+		return active;
+	}
+	
+	public void setActive ( boolean active ) {
+		this.active = active;
 	}
 }
