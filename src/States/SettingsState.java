@@ -5,13 +5,12 @@ import Game.Handler;
 import org.jfree.fx.FXGraphics2D;
 
 /**
- * Creature class class
- * This class extends Entity.
+ * SettingsState class
+ * Our game exists of states, for example: If we are in the gamestate, the game is playing, if we are in the
+ * MenuState, the game is in the Menu (paused)
  *
  * @author Davy Raitt
  */
-
-
 public class SettingsState extends State {
 	public SettingsState ( Handler handler ) {
 		super ( handler );
@@ -31,17 +30,17 @@ public class SettingsState extends State {
 	public void moveUp ( ) {
 	
 	}
-
+	
 	@Override
-	public void setCurrentLevel(int newLevel) {
-
+	public void setCurrentLevel ( int newLevel ) {
+	
 	}
-
+	
 	@Override
-	public int getCurrentLevel() {
+	public int getCurrentLevel ( ) {
 		return 0;
 	}
-
+	
 	@Override
 	public void moveDown ( ) {
 	

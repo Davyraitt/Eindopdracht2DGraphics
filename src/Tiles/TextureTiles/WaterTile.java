@@ -6,12 +6,12 @@ import Tools.Assets;
 import java.awt.image.BufferedImage;
 
 /**
- * Creature class class
- * This class extends Entity.
+ * Tile class
+ * Our game exists out of tiles, a tile is a 32 by 32 image. Tiles can look different, for example we have a grass
+ * tile and water tile.
  *
  * @author Davy Raitt
  */
-
 
 public class WaterTile extends Tile {
 	
@@ -20,8 +20,7 @@ public class WaterTile extends Tile {
 	}
 	
 	@Override
-	public boolean isSolid ()
-	{
+	public boolean isSolid ( ) {
 		return true;
 	}
 }

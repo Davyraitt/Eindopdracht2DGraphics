@@ -7,8 +7,9 @@ import org.jfree.fx.FXGraphics2D;
 import java.io.*;
 
 /**
- * Creature class class
- * This class extends Entity.
+ * Gamestate class
+ * Our game exists of states, for example: If we are in the gamestate, the game is playing, if we are in the
+ * MenuState, the game is in the Menu (paused)
  *
  * @author Davy Raitt
  */
@@ -23,17 +24,18 @@ public class GameState extends State {
 	
 	public GameState ( Handler handler ) {
 		super ( handler );
-		world = new World ( handler , "Resources/WorldFiles/World1.txt" );
-		world2 = new World ( handler , "Resources/WorldFiles/World2.txt" );
-		world3 = new World ( handler , "Resources/WorldFiles/World3.txt" );
-		generateRandomWorld ( );
-		world4 = new World ( handler , "Resources/WorldFiles/World4.txt" );
-		handler.setWorld ( world );
-		currentLevel = 1;
+		world = new World ( handler , "Resources/WorldFiles/World1.txt" ); // creates world 1
+		world2 = new World ( handler , "Resources/WorldFiles/World2.txt" );  // creates world 2
+		world3 = new World ( handler , "Resources/WorldFiles/World3.txt" ); // creates world 3
+		generateRandomWorld ( ); // generates the random world
+		world4 = new World ( handler , "Resources/WorldFiles/World4.txt" ); // creates world 4
+		handler.setWorld ( world ); // startworld is world 1
+		currentLevel = 1; // keeps track of the current level
 		
 	}
 	
-	private void generateRandomWorld ( ) {
+	private void generateRandomWorld ( ) { // generates a random world for lever 4, fills the text file with random
+		// tiles
 		try
 		{
 			FileOutputStream f = new FileOutputStream ( new File ( "Resources/WorldFiles/World4.txt" ) );
@@ -91,7 +93,7 @@ public class GameState extends State {
 	}
 	
 	@Override
-	public void draw ( FXGraphics2D graphics ) {
+	public void draw ( FXGraphics2D graphics ) { // draws the worlds.. based on the currentlevel
 		switch ( currentLevel )
 		{
 			case 1:
@@ -119,7 +121,7 @@ public class GameState extends State {
 	}
 	
 	@Override
-	public void update ( double deltaTime ) {
+	public void update ( double deltaTime ) {  // updates the worlds.. based on the currentlevel
 		switch ( currentLevel )
 		{
 			case 1:
@@ -142,6 +144,8 @@ public class GameState extends State {
 		}
 		
 	}
+	
+	// move commands for the player
 	
 	@Override
 	public void moveUp ( ) {
@@ -314,6 +318,8 @@ public class GameState extends State {
 		}
 	}
 	
+	// attack moves for the player
+	
 	@Override
 	public void attack ( ) {
 		switch ( currentLevel )
@@ -332,6 +338,8 @@ public class GameState extends State {
 				break;
 		}
 	}
+	
+	// getters and setters
 	
 	@Override
 	public void setCurrentLevel ( int newLevel ) {

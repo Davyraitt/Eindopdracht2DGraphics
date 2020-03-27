@@ -17,45 +17,40 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Creature class class
- * This class extends Entity.
+ * World class
+ * This class contains all the details of our worlds
  *
  * @author Davy Raitt
  */
-
 
 import Game.Handler;
 
 public class World {
 	
-	private int width;
-	private int height;
-	private int spawnX;
-	private int spawnY;
-	private Handler handler;
+	private int width; // width of our world
+	private int height; // height of our world
+	private int spawnX; // spawn location of the player
+	private int spawnY; // spawn location of the player
+	private Handler handler; // creating a handler to pass along variables
 	
-	private int[][] tiles;
-	private int currentLevel;
+	private int[][] tiles; // 2d arraylist
+	private int currentLevel; // keeps track of our current level
 	
 	//Entities
-	private EntityManager entityManagerLevel1;
-	private EntityManager entityManagerLevel2;
-	private EntityManager entityManagerLevel3;
-	private EntityManager entityManagerLevel4;
-	private EntityManager entityManagerLevel5;
-	private EntityManager entityManagerLevel6;
-	
-	
+	private EntityManager entityManagerLevel1; // creating entity managers for each level
+	private EntityManager entityManagerLevel2; // creating entity managers for each level
+	private EntityManager entityManagerLevel3; // creating entity managers for each level
+	private EntityManager entityManagerLevel4; // creating entity managers for each level
+	private EntityManager entityManagerLevel5; // creating entity managers for each level
+	private EntityManager entityManagerLevel6; // creating entity managers for each level
 	
 	private ArrayList < EntityManager > entityManagers;
 	
-	public World ( Handler handler , String path ) {
+	public World ( Handler handler , String path ) { // if we want to create a world we have to pass trough a
+		// handler and a path
 		this.handler = handler;
 		
-		entityManagers = new ArrayList < EntityManager > ( );
-		
-		
-		
+		entityManagers = new ArrayList < EntityManager > ( ); // creating the entitymanager
 		
 		//creating the entity manager
 		entityManagerLevel1 = new EntityManager ( handler , new Player ( handler , 100 , 100 ) );
@@ -75,8 +70,13 @@ public class World {
 		entityManagerLevel3.addEntity ( new Tree3 ( handler , 150 , 200 ) );
 		entityManagerLevel3.addEntity ( new Tree4 ( handler , 150 , 250 ) );
 		
-		entityManagerLevel3.addEntity ( new Alien ( handler , 50 , 100 ) );
+		entityManagerLevel3.addEntity ( new Alien ( handler , 70 , 130 ) );
+		entityManagerLevel3.addEntity ( new Alien ( handler , 100 , 130 ) );
+		entityManagerLevel3.addEntity ( new Alien ( handler , 130 , 130 ) );
+		entityManagerLevel3.addEntity ( new Alien ( handler , 170 , 130 ) );
+		entityManagerLevel3.addEntity ( new Alien ( handler , 210 , 130 ) );
 		
+		//adding to the arraylist of entityManagers
 		entityManagers.add ( entityManagerLevel1 );
 		entityManagers.add ( entityManagerLevel2 );
 		entityManagers.add ( entityManagerLevel3 );
@@ -84,15 +84,16 @@ public class World {
 		entityManagers.add ( entityManagerLevel5 );
 		entityManagers.add ( entityManagerLevel6 );
 		
-		for ( EntityManager entityManager : entityManagers )
+		for ( EntityManager entityManager : entityManagers ) // for each entitymanager we add each portal
 		{
 			entityManager.addEntity ( new PortalLevel1 ( handler , 32 , 32 , 32 , 32 ) );
 			entityManager.addEntity ( new PortalLevel2 ( handler , 96 , 32 , 32 , 32 ) );
 			entityManager.addEntity ( new PortalLevel3 ( handler , 160 , 32 , 32 , 32 ) );
 		}
 		
-		loadWorld ( path );
+		loadWorld ( path ); // we load the world from the txt file
 		
+		//setting the spawn locations for each level
 		entityManagerLevel1.getPlayer ( ).setX ( spawnX );
 		entityManagerLevel1.getPlayer ( ).setY ( spawnY );
 		
@@ -107,7 +108,7 @@ public class World {
 		
 	}
 	
-	public void update ( ) {
+	public void update ( ) { // update each level
 		switch ( currentLevel )
 		{
 			
@@ -127,19 +128,21 @@ public class World {
 		
 	}
 	
-	public void draw ( Graphics g ) {
+	public void draw ( Graphics g ) { // draw each level
 		
 		for ( int y = 0 ; y < height ; y++ ) //going down one row
 		{
 			for ( int x = 0 ; x < width ; x++ ) //looping from the first left tile to the far right tile
 			{
+				// gets the correct tile and draws it at the offset 
 				getTile ( x , y ).draw ( g ,
+					//drawing the tiles
 					( int ) ( x * Tile.tileWidth - handler.getGameCamera ( ).getxOffset ( ) ) ,
 					( int ) ( y * Tile.tileHeight - handler.getGameCamera ( ).getyOffset ( ) ) );
 			}
 		}
 		
-		switch ( currentLevel )
+		switch ( currentLevel ) // draw each level dependent on the currentlevel
 		{
 			case 1:
 				entityManagerLevel1.draw ( g );
@@ -159,7 +162,7 @@ public class World {
 	
 	public Tile getTile ( int x , int y ) { // asks for x and y coordinates
 		
-		if ( x < 0 || y < 0 || x >= width || y >= height )
+		if ( x < 0 || y < 0 || x >= width || y >= height ) // if the input is wrong, we return a grasstile
 		{
 			return Tile.GrassTile;
 		}
@@ -175,22 +178,32 @@ public class World {
 	}
 	
 	private void loadWorld ( String path ) {
-		String file = Utils.loadFileAsString ( path );
-		String[] tokens = file.split ( "\\s+" );
-		width = Utils.parseInt ( tokens[ 0 ] );
-		height = Utils.parseInt ( tokens[ 1 ] );
-		spawnX = Utils.parseInt ( tokens[ 2 ] );
-		spawnY = Utils.parseInt ( tokens[ 3 ] );
+		String file = Utils.loadFileAsString ( path ); // load the world as a string
+		String[] tokens = file.split ( "\\s+" ); // creates an arraylist of strings, and we split the string at
+		// any amount of whitespace
 		
-		tiles = new int[ width ][ height ];
+		//reading in the first four numbers of our .txt file
+		width = Utils.parseInt ( tokens[ 0 ] ); // first entry of the world is the width
+		height = Utils.parseInt ( tokens[ 1 ] ); // second entry of the world is the height
+		spawnX = Utils.parseInt ( tokens[ 2 ] ); // thirds entry of the world is the spawn X
+		spawnY = Utils.parseInt ( tokens[ 3 ] ); // fourth entry of the world is the spawn Y
+		
+		tiles = new int[ width ][ height ]; // initialize tiles array, 1st dimention size is width, 2nd
+		// dimention size is height
 		for ( int y = 0 ; y < height ; y++ )
-		{
-			for ( int x = 0 ; x < width ; x++ )
+		{ // for each height from the world (declared above)
 			{
-				tiles[ x ][ y ] = Utils.parseInt ( tokens[ ( x + y * width ) + 4 ] );
+				for ( int x = 0 ; x < width ; x++ )  // for each width from the world (declared above)
+				{
+					tiles[ x ][ y ] = Utils.parseInt ( tokens[ ( x + y * width ) + 4 ] );
+					// add 4 because the first 4 elements are width, height, and spawns
+					// convert the array to an 2d array
+				}
 			}
 		}
 	}
+	
+	//getters and setters and default methods
 	
 	public int getWidth ( ) {
 		return width;
@@ -370,21 +383,20 @@ public class World {
 		
 	}
 	
-	
-	public void setSpeed ( float speed) {
+	public void setSpeed ( float speed ) {
 		switch ( currentLevel )
 		{
 			case 1:
-				entityManagerLevel1.getPlayer ( ).setSpeed (speed );
+				entityManagerLevel1.getPlayer ( ).setSpeed ( speed );
 				break;
 			case 2:
-				entityManagerLevel2.getPlayer ( ).setSpeed (speed );
+				entityManagerLevel2.getPlayer ( ).setSpeed ( speed );
 				break;
 			case 3:
-				entityManagerLevel3.getPlayer ( ).setSpeed (speed );
+				entityManagerLevel3.getPlayer ( ).setSpeed ( speed );
 				break;
 			case 4:
-				entityManagerLevel4.getPlayer ( ).setSpeed (speed );
+				entityManagerLevel4.getPlayer ( ).setSpeed ( speed );
 				break;
 		}
 		
@@ -394,22 +406,20 @@ public class World {
 		switch ( currentLevel )
 		{
 			case 1:
-				entityManagerLevel1.getPlayer ( ).attack ();
+				entityManagerLevel1.getPlayer ( ).attack ( );
 				break;
 			case 2:
-				entityManagerLevel2.getPlayer ( ).attack ();
+				entityManagerLevel2.getPlayer ( ).attack ( );
 				break;
 			case 3:
-				entityManagerLevel3.getPlayer ( ).attack ();
+				entityManagerLevel3.getPlayer ( ).attack ( );
 				break;
 			case 4:
-				entityManagerLevel4.getPlayer ( ).attack ();
+				entityManagerLevel4.getPlayer ( ).attack ( );
 				break;
 		}
 		
 	}
-	
-	
 	
 	public void setCurrentLevel ( int cl ) {
 		this.currentLevel = cl;

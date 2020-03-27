@@ -7,12 +7,10 @@ import Game.Handler;
 import java.awt.*;
 
 /**
- * Creature class class
- * This class extends Entity.
+ * Main entity class
  *
  * @author Davy Raitt
  */
-
 
 public abstract class Entity {
 	
@@ -20,8 +18,8 @@ public abstract class Entity {
 	protected float x, y;
 	protected int width, height;
 	protected Rectangle bounds;
-	public static final int DEFAULT_HEALTH = 10;
-	protected int health;
+	private static final int DEFAULT_HEALTH = 10; // entity has a default health of 10
+	private int health;
 	protected boolean active = true;
 	
 	public Entity ( Handler handler , float x , float y , int width , int height ) {
@@ -35,20 +33,21 @@ public abstract class Entity {
 		health = DEFAULT_HEALTH; // health is 10 (default)
 	}
 	
-	public boolean checkEntityCollisions ( float xOffset , float yOffset ) {
+	protected boolean checkEntityCollisions ( float xOffset , float yOffset ) {
 		
 		handler.getWorld ( ).getEntityManagers ( );
 		
 		if ( handler.getLevel ( ) == 1 )
 		{
-			for ( Entity e : handler.getWorld ( ).getEntityManagerLevel1 ( ).getEntities ( ) )
+			for ( Entity e : handler.getWorld ( ).getEntityManagerLevel1 ( ).getEntities ( ) ) // gets each
+			// entity in level 1, and checks for intersection
 			{
-				if ( e.equals ( this ) )
+				if ( e.equals ( this ) ) // if the entity is itself, skip to the next
 				{
 					continue;
 				}
 				if ( e.getCollisionBounds ( 0f , 0f ).intersects ( getCollisionBounds ( xOffset ,
-					yOffset ) ) )
+					yOffset ) ) ) // if the entity has collision, we return true (that is has)
 				{
 					return true;
 				}
@@ -56,11 +55,11 @@ public abstract class Entity {
 			return false;
 		}
 		
-		if ( handler.getLevel ( ) == 2 )
+		if ( handler.getLevel ( ) == 2 ) // gets each entity in level 2, and checks for intersection
 		{
 			for ( Entity e : handler.getWorld ( ).getEntityManagerLevel2 ( ).getEntities ( ) )
 			{
-				if ( e.equals ( this ) )
+				if ( e.equals ( this ) ) // if the entity is itself, skip to the next
 				{
 					continue;
 				}
@@ -75,9 +74,10 @@ public abstract class Entity {
 		
 		if ( handler.getLevel ( ) == 3 )
 		{
-			for ( Entity e : handler.getWorld ( ).getEntityManagerLevel3 ( ).getEntities ( ) )
+			for ( Entity e : handler.getWorld ( ).getEntityManagerLevel3 ( ).getEntities ( ) ) // gets each
+			// entity in level 3, and checks for intersection
 			{
-				if ( e.equals ( this ) )
+				if ( e.equals ( this ) ) // if the entity is itself, skip to the next
 				{
 					continue;
 				}
@@ -93,19 +93,22 @@ public abstract class Entity {
 		return false;
 	}
 	
-	public Rectangle getCollisionBounds ( float xOffset , float yOffset ) {
+	public Rectangle getCollisionBounds ( float xOffset , float yOffset ) { // getter for our collisionbounds
 		return new Rectangle ( ( int ) ( x + bounds.x + xOffset ) , ( int ) ( y + bounds.y + yOffset ) ,
 			bounds.width , bounds.height );
 	}
 	
-	public void hurt (int amount) {
+	public void hurt ( int amount ) { // we can hurt a entity, the given amount hurts it
 		health = health - amount;
 		
-		if (health <= 0) {
-			active = false;
-			die ();
+		if ( health <= 0 )
+		{
+			active = false; // if this boolean is false, the Entitymanager doesnt render it
+			die ( );
 		}
 	}
+	
+	//getters and setters and default methods
 	
 	protected abstract void die ( );
 	

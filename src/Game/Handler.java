@@ -3,16 +3,13 @@ package Game;
 import World.World;
 
 /**
- * Creature class class
- * This class extends Entity.
+ * Handler class
+ * // The handler class is a simple class that allows us to pass along a bunch of variables when we want to.
  *
  * @author Davy Raitt
  */
 
-
 public class Handler {
-	
-	// The handler class is a simple class that allows us to pass along a bunch of variables when we want to.
 	
 	private Game game;
 	private World world;
@@ -22,14 +19,16 @@ public class Handler {
 		this.game = game;
 	}
 	
+	//getters and setters and default methods
+	
+	public void setSpeed ( int level ) {
+	
+	}
+	
 	public void setLevel ( int level ) {
 		game.getGameState ( ).setCurrentLevel ( level );
 		world.setCurrentLevel ( level );
 		this.Currentlevel = level;
-	}
-	
-	public void setSpeed ( int level ) {
-	
 	}
 	
 	public int getCurrentlevel ( ) {
@@ -43,17 +42,17 @@ public class Handler {
 	public int getWidth ( ) {
 		
 		return game.getWidth ( ); // getter for the width of the game, gets the width from the main game method
-           // getter
+		// getter
 	}
 	
 	public int getHeight ( ) {
 		return game.getHeight ( ); // getter for the height of the game, gets the height from the main game
-           // method getter
+		// method getter
 	}
 	
 	public GameCamera getGameCamera ( ) {
 		return game.getGameCamera ( ); // getter for the camera of the game, gets the camera from the main game
-           // method getter
+		// method getter
 	}
 	
 	public Game getGame ( ) {

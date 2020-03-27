@@ -6,12 +6,12 @@ import Tools.Assets;
 import org.jfree.fx.FXGraphics2D;
 
 /**
- * Creature class class
- * This class extends Entity.
+ * Loadingstate class
+ * Our game exists of states, for example: If we are in the gamestate, the game is playing, if we are in the
+ * MenuState, the game is in the Menu (paused)
  *
  * @author Davy Raitt
  */
-
 
 public class LoadingState extends State {
 	private int counter = 0;
@@ -21,16 +21,18 @@ public class LoadingState extends State {
 	}
 	
 	@Override
-	public void draw ( FXGraphics2D graphics ) {
+	public void draw ( FXGraphics2D graphics ) { // draws the loadingscreen
 		
 		graphics.drawImage ( Assets.loadingScreen , 0 , 0 , Assets.loadingScreen.getWidth ( ) ,
-                     Assets.loadingScreen.getHeight ( ) , null );
+			Assets.loadingScreen.getHeight ( ) , null );
 		
 	}
 	
 	@Override
 	public void update ( double deltaTime ) {
 	}
+	
+	// default methods
 	
 	@Override
 	public void moveUp ( ) {

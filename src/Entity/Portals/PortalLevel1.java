@@ -1,8 +1,7 @@
 package Entity.Portals;
 
 /**
- * Creature class class
- * This class extends Entity.
+ * Portal class, when the player enters the boundbox of the portal, we switch to another level
  *
  * @author Davy Raitt
  */
@@ -39,10 +38,11 @@ public class PortalLevel1 extends StaticEntity {
 	
 	@Override
 	public void update ( ) {
-		if ( boundsBox.contains ( Player.boundsBox.getX ( ) , Player.boundsBox.getY ( ) ) ) {
-			
-			System.out.println ("called" );
-			handler.setLevel ( 2 ); }
+		if ( boundsBox.contains ( Player.boundsBox.getX ( ) , Player.boundsBox.getY ( ) ) ) // if the player
+		// enters the portal, we go to level 2
+		{
+			handler.setLevel ( 2 );
+		}
 		
 	}
 	
@@ -53,6 +53,8 @@ public class PortalLevel1 extends StaticEntity {
 			( int ) ( y - handler.getGameCamera ( ).getyOffset ( ) ) , width , height , null );
 		
 	}
+	
+	//getters and setters and default methods
 	
 	@Override
 	public void moveUp ( ) {

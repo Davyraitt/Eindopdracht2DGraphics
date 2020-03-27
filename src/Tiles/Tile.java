@@ -6,6 +6,14 @@ import Tiles.LevelTiles.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Tile class
+ * Our game exists out of tiles, a tile is a 32 by 32 image. Tiles can look different, for example we have a grass
+ * tile and water tile.
+ *
+ * @author Davy Raitt
+ */
+
 public class Tile {
 	//STATIC VARIABLE
 	
@@ -29,9 +37,9 @@ public class Tile {
 	//CLASS
 	
 	protected BufferedImage texture;
-	protected final int id;
-	public static final int tileWidth = 32;
-	public static final int tileHeight = 32;
+	protected final int id; // each tile has an id, this is how we render it
+	public static final int tileWidth = 32; // width of a default tile
+	public static final int tileHeight = 32;  // height of a default tile
 	
 	public Tile ( BufferedImage texture , int id ) {
 		this.texture = texture;
@@ -47,7 +55,7 @@ public class Tile {
 	
 	public void draw ( Graphics g , int x , int y ) {
 		g.drawImage ( texture , x , y , tileWidth , tileHeight , null );
-	}
+	} // draw method for the tile
 	
 	public int getId ( ) {
 		return id;

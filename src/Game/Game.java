@@ -22,17 +22,16 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
- * Creature class class
- * This class extends Entity.
+ * Game class
+ * Contains all the main code of our game
  *
  * @author Davy Raitt
  */
 
-
 public class Game extends Application {
 	//project data
-	private int width = 400;
-	private int height = 400;
+	private int width = 400; // size of the canvas
+	private int height = 400; // size of the canvas
 	private ResizableCanvas canvas;
 	
 	//title of game
@@ -48,7 +47,6 @@ public class Game extends Application {
 	private long timer = 0; // time until we hit 1s, print out how many updates and draw we did
 	private int updates = 0; // int for the fps counter
 	private int lastFPSValue = 0;
-	
 	
 	//images
 	private BufferedImage testImage; // Testimage initialiseren
@@ -72,8 +70,6 @@ public class Game extends Application {
 	int mouseX;
 	int mouseY;
 	
-	//GUI
-	
 	public Game ( ) {
 	
 	}
@@ -89,20 +85,26 @@ public class Game extends Application {
 		// inputting sound
 		Clip clip = AudioSystem.getClip ( ); // inputting sound
 		clip.open ( audioIn ); // inputting sound
+		
 		clip.start ( ); // inputting sound
-		BorderPane mainPane = new BorderPane ( );
+		
+		BorderPane mainPane = new BorderPane ( ); // creating a new borderpane
+		
+		//methods for input
 		canvas = new ResizableCanvas ( g -> draw ( g ) , mainPane );
 		canvas.setFocusTraversable ( true );
 		canvas.setOnScroll ( this::mouseScrolled ); // mouseScrolled method is called when the user scrolls
 		canvas.setOnKeyPressed ( this::keyPressed ); // keyPressed method is called when the user presses a key
 		canvas.setOnKeyReleased ( this::keyReleased ); // keyPressed method is called when the user presses a key
 		canvas.setOnMouseMoved ( this::mouseMoved ); //
-		canvas.setOnMouseDragged ( this::mouseDragged ); //
 		canvas.setOnMousePressed ( this::mousePressed ); //
 		canvas.setOnMouseReleased ( this::mouseReleased ); //
 		mainPane.setCenter ( canvas );
 		FXGraphics2D g2d = new FXGraphics2D ( canvas.getGraphicsContext2D ( ) );
+		
+		//calls our init method
 		init ( );
+		
 		new AnimationTimer ( ) { // main game loop, constantly runs update(update) and draw (draw) to show
 			// things on the screen
 			long last = -1;
@@ -141,7 +143,7 @@ public class Game extends Application {
 		
 	}
 	
-	private void mousePressed ( MouseEvent e ) {
+	private void mousePressed ( MouseEvent e ) { // contains simple mouseclick booleans
 		
 		if ( e.isPrimaryButtonDown ( ) )
 		{
@@ -152,7 +154,7 @@ public class Game extends Application {
 		}
 	}
 	
-	private void mouseReleased ( MouseEvent e ) {
+	private void mouseReleased ( MouseEvent e ) {  // contains simple mousereleased booleans
 		
 		if ( !e.isPrimaryButtonDown ( ) )
 		{
@@ -164,16 +166,13 @@ public class Game extends Application {
 		
 	}
 	
-	private void mouseDragged ( MouseEvent e ) {
-	}
-	
-	private void mouseMoved ( MouseEvent e ) {
+	private void mouseMoved ( MouseEvent e ) { // when the mouse moves, we constantly update the x and y
 		mouseX = ( int ) e.getX ( );
 		mouseY = ( int ) e.getY ( );
 		
 	}
 	
-	private void keyReleased ( KeyEvent e ) {
+	private void keyReleased ( KeyEvent e ) { // when we release a certain key, we call a certain method
 		switch ( e.getCode ( ) )
 		{
 			case W:
@@ -202,14 +201,13 @@ public class Game extends Application {
 				gameState.moveRightReleased ( );
 				break;
 			case SHIFT:
-				gameState.setSpeed (1.0f);
+				gameState.setSpeed ( 1.0f );
 				break;
 		}
 		
-		
 	}
 	
-	private void keyPressed ( KeyEvent e ) {
+	private void keyPressed ( KeyEvent e ) { // when we press a certain key, we call a certain method
 		switch ( e.getCode ( ) )
 		{
 			case W:
@@ -240,16 +238,16 @@ public class Game extends Application {
 				State.setState ( getMenuState ( ) );
 				break;
 			case SHIFT:
-				gameState.setSpeed (2.0f);
+				gameState.setSpeed ( 2.0f );
 				break;
 			case Q:
-				gameState.setSpeed (2.0f);
+				gameState.attack ( );
 				break;
 		}
 		
 	}
 	
-	private void mouseScrolled ( ScrollEvent e ) {
+	private void mouseScrolled ( ScrollEvent e ) { // method for zooming into the game
 		double zoomFactor = 1.05;
 		double deltaY = e.getDeltaY ( );
 		
@@ -263,30 +261,31 @@ public class Game extends Application {
 	}
 	
 	public void init ( ) { // initialisation method
+		//initialising the assets (images, etc)
 		Assets.init ( );
 		
+		//creating the states
 		gameCamera = new GameCamera ( handler , 0 , 0 );
-		handler = new Handler ( this ); // we pass in this, because it takes a game object (this class)
-		gameState = new GameState ( handler ); // we pass in this, because it takes a game object (this class)
-		menuState = new MenuState ( handler ); // we pass in this, because it takes a game object (this class)
-		settingState = new SettingsState ( handler ); // we pass in this, because it takes a game object (this
+		handler = new Handler ( this );
+		gameState = new GameState ( handler );
+		menuState = new MenuState ( handler );
+		settingState = new SettingsState ( handler );
 		// class)
 		loadingState = new LoadingState ( handler );
-		State.setState ( menuState );
+		State.setState ( menuState ); // sets the first state of the game, if we switch this to gameState we
+		// spawn in the game
 		
 	}
 	
-	public void draw ( FXGraphics2D graphics ) { // AKA draw
-		//graphics.drawImage( sheet.crop(32,0, 35, 51), 5,5, null); // using the crop method
+	public void draw ( FXGraphics2D graphics ) {
 		
 		graphics.setBackground ( Color.white );
 		
-		//Eerst het scherm leeg maken
+		//Clearing the screen first
 		graphics.clearRect ( 0 , 0 , this.width , this.height );
-		// graphics.drawImage(testImage, 0, 0, null); // drawing a simple image
 		
-		// Hier begin ik met tekenen
-		if ( State.getState ( ) != null )
+		// Start drawing
+		if ( State.getState ( ) != null ) // double check, if no state is set we dont draw anything...
 		{
 			State.getState ( ).draw ( graphics );
 		}
@@ -298,23 +297,26 @@ public class Game extends Application {
 			
 		}
 		
-		graphics.drawString ( String.valueOf ( lastFPSValue ), 382, 15 );
+		//draws the FPS right corner
+		graphics.drawString ( String.valueOf ( lastFPSValue ) , 382 , 15 );
 		
-		// Hier stop ik het tekenen
+		// Stop drawing
 		graphics.dispose ( );
 		
 	}
 	
-	public void update ( double deltaTime ) {  // update aka update
+	public void update ( double deltaTime ) {
 		
-		if ( State.getState ( ) != null )
+		if ( State.getState ( ) != null ) // double check, if no state is set we dont update anything...
 		{
 			long now = System.nanoTime ( );
 			long last = -1;
-			State.getState ( ).update ( now - last / 1000000000.0 );
+			State.getState ( ).update ( now - last / 1000000000.0 ); // updates the state
 		}
 		
 	}
+	
+	//getters and setters and default methods
 	
 	public boolean isLeftPressed ( ) {
 		return leftPressed;

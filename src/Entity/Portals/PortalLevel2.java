@@ -13,8 +13,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * Creature class class
- * This class extends Entity.
+ * Portal class, when the player enters the boundbox of the portal, we switch to another level
  *
  * @author Davy Raitt
  */
@@ -48,6 +47,8 @@ public class PortalLevel2 extends StaticEntity {
 			( int ) ( y - handler.getGameCamera ( ).getyOffset ( ) ) , width , height , null );
 		
 	}
+	
+	//getters and setters and default methods
 	
 	@Override
 	public void moveUp ( ) {

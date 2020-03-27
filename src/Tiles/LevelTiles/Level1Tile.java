@@ -3,14 +3,13 @@ package Tiles.LevelTiles;
 import Tiles.Tile;
 import Tools.Assets;
 
-
 /**
- * Creature class class
- * This class extends Entity.
+ * Tile class
+ * Our game exists out of tiles, a tile is a 32 by 32 image. Tiles can look different, for example we have a grass
+ * tile and water tile.
  *
  * @author Davy Raitt
  */
-
 
 import java.awt.image.BufferedImage;
 

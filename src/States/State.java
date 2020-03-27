@@ -5,8 +5,9 @@ import org.jfree.fx.FXGraphics2D;
 import Game.Handler;
 
 /**
- * Creature class class
- * This class extends Entity.
+ * State class
+ * Our game exists of states, for example: If we are in the gamestate, the game is playing, if we are in the
+ * MenuState, the game is in the Menu (paused)
  *
  * @author Davy Raitt
  */

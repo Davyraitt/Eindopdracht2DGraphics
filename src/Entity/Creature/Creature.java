@@ -18,7 +18,7 @@ import java.awt.geom.Rectangle2D;
 
 public class Creature extends Entity {
 	
-	 // Default health of a Creature is 10
+	// Default health of a Creature is 10
 	public static final float DEFAULT_SPEED = 1.0f; // Default speed of a Creature is 1.0f
 	public static final int DEFAULT_CREATURE_WIDTH = 32; // Default Width of a creature is 32 px
 	public static final int DEFAULT_CREATURE_HEIGHT = 32; // Default height of a creature is 32 px
@@ -37,7 +37,7 @@ public class Creature extends Entity {
 	}
 	
 	@Override
-	protected void die ( ) {
+	protected void die ( ) { // this method gets called if the creature dies
 	
 	}
 	
@@ -117,6 +117,8 @@ public class Creature extends Entity {
 		return handler.getWorld ( ).getTile ( x , y ).isSolid ( );
 		
 	}
+	
+	//getters and setters and default methods
 	
 	public void draw ( Graphics g ) {
 	

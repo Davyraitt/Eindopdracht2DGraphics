@@ -8,8 +8,7 @@ import Tools.Assets;
 import java.awt.*;
 
 /**
- * Creature class class
- * This class extends Entity.
+ * Class for the monster "ALien"
  *
  * @author Davy Raitt
  */
@@ -19,15 +18,15 @@ public class Alien extends StaticEntity {
 	public Alien ( Handler handler , float x , float y ) {
 		super ( handler , x , y , Tile.tileWidth , Tile.tileHeight );
 		
-		bounds.x = 5;
-		bounds.y = 5;
-		bounds.width = 23;
-		bounds.height = 23;
+		bounds.x = 5; //boundbox details of the Alien
+		bounds.y = 5; //boundbox details of the Alien
+		bounds.width = 23; //boundbox details of the Alien
+		bounds.height = 23; //boundbox details of the Alien
 	}
 	
 	@Override
 	protected void die ( ) {
-	
+		System.out.println ( "dead" ); // when we kill the alien, we print the dead and it dissapears
 	}
 	
 	@Override
@@ -36,10 +35,16 @@ public class Alien extends StaticEntity {
 	}
 	
 	@Override
-	public void draw ( Graphics g ) {
-		g.drawImage ( Assets.monsterDown.get ( 1 ) , ( int ) ( x - handler.getGameCamera ( ).getxOffset ( ) ) ,
-			( int ) ( y - handler.getGameCamera ( ).getyOffset ( ) ) , width , height , null );
+	public void draw ( Graphics g ) { // drawing the alien, gets the img from our assets class
+		if ( active )
+		{
+			g.drawImage ( Assets.monsterDown.get ( 1 ) ,
+				( int ) ( x - handler.getGameCamera ( ).getxOffset ( ) ) ,
+				( int ) ( y - handler.getGameCamera ( ).getyOffset ( ) ) , width , height , null );
+		}
 	}
+	
+	//getters and setters and default methods
 	
 	@Override
 	public void moveUp ( ) {

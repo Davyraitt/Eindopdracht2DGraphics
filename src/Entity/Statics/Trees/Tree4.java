@@ -8,12 +8,10 @@ import Tools.Assets;
 import java.awt.*;
 
 /**
- * Creature class class
- * This class extends Entity.
+ * Tree class, contains details of our tree
  *
  * @author Davy Raitt
  */
-
 public class Tree4 extends StaticEntity {
 	public Tree4 ( Handler handler , float x , float y ) {
 		super ( handler , x , y , Tile.tileWidth , Tile.tileHeight );
@@ -36,21 +34,21 @@ public class Tree4 extends StaticEntity {
 	
 	@Override
 	public void draw ( Graphics g ) {
-		g.drawImage ( Assets.treetile3 ,(int) (x - handler.getGameCamera ().getxOffset ()), (int) (y - handler.getGameCamera ().getyOffset ()) , width, height, null);
+		g.drawImage ( Assets.treetile3 , ( int ) ( x - handler.getGameCamera ( ).getxOffset ( ) ) ,
+			( int ) ( y - handler.getGameCamera ( ).getyOffset ( ) ) , width , height , null );
 		
 		//		g.setColor ( Color.red ); // shows the bound box
-		//				g.fillRect ( ( int ) ( x + bounds.x - handler.getGameCamera ( ).getxOffset ( ) ) ,
-		//					( int ) ( y + bounds.y - handler.getGameCamera ( ).getyOffset ( ) ) , bounds.width ,
+		//				g.fillRect ( ( int ) ( x + bounds.x - handler.getGameCamera ( ).getxOffset (
+		//				) ) ,
+		//					( int ) ( y + bounds.y - handler.getGameCamera ( ).getyOffset ( ) ) ,
+		//					bounds.width ,
 		//					bounds.height );
 		// uncomment above to see the bounds box
 		// fills the bound box
 	}
 	
+	//getters and setters and default methods
 	
-	
-	
-	
-	////////////////////////////////////
 	@Override
 	public void moveUp ( ) {
 	
